@@ -224,6 +224,181 @@
 
 
 
+<!-- === AGGRESSIVE PROMO (drop right after </nav>) === -->
+<section id="promo" class="promoX" data-spots-total="100" data-spots-left="100">
+  <div class="container">
+    <div class="promoX-card">
+      <div class="promoX-wrap">
+        <div class="promoX-copy">
+          <div class="promoX-pill">
+            <span class="promoX-pulse" aria-hidden="true"></span>
+            1,000 SLY credits — free
+          </div>
+
+          <h2 class="promoX-title grad">
+            First <span class="promoX-strong">100 signups</span> get paid to try SlyOS.
+          </h2>
+
+          <p class="promoX-sub">No card. Signed receipts. Edge-fast.</p>
+
+          <div class="promoX-cta">
+            <a class="btn primary prominent" href="#waitlist" data-audience="company">Claim credits — company</a>
+            <a class="btn" href="#waitlist" data-audience="app">Claim credits — individual</a>
+          </div>
+
+          <ul class="promoX-badges" role="list">
+            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.4 10.6 3.8 8l-.9.9 3.5 3.5L13 5.8l-.9-.9z"/></svg> Proof-verified results</li>
+            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l6 3v4c0 4-2.6 6.7-6 7C4.6 14.7 2 12 2 8V4z"/></svg> Private pools & policy control</li>
+            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h4l1 3 2-6 1 3h4"/></svg> Edge-first latency</li>
+          </ul>
+        </div>
+
+        <div class="promoX-meter">
+          <div class="promoX-meter-head">
+            <span class="promoX-meter-left" id="promoX-left">100</span>
+            <span class="promoX-meter-label">credits bundles left</span>
+          </div>
+          <div class="promoX-bar" aria-label="Bundles remaining" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+            <i class="promoX-fill"></i>
+          </div>
+          <p class="promoX-fine">Private beta · Q4 2025. *Illustrative savings in Pricing.</p>
+        </div>
+      </div>
+
+      <span class="promoX-glow" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <style>
+    .promoX{position:relative;padding:clamp(12px,3vw,18px) 0}
+    .promoX-card{
+      position:relative;overflow:hidden;border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .promoX-glow{
+      position:absolute;inset:-2px;border-radius:24px;pointer-events:none;
+      background:conic-gradient(from 0deg at 50% 50%, #ff7a18, #ffb800, #ff3d81, #ff7a18);
+      filter:blur(22px);opacity:.18;mix-blend:screen;animation:promoX-rotate 8s linear infinite;
+    }
+    @keyframes promoX-rotate{to{transform:rotate(1turn)}}
+
+    .promoX-wrap{display:grid;gap:14px;padding:clamp(14px,2.5vw,22px);grid-template-columns:1fr}
+    @media (min-width:860px){ .promoX-wrap{grid-template-columns:1fr 1fr;align-items:center} }
+
+    .promoX-pill{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(255,255,255,.16);
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.05);font-weight:700;letter-spacing:.02em;
+    }
+    .promoX-pulse{
+      width:10px;height:10px;border-radius:999px;
+      background:radial-gradient(circle at 50% 50%, #ffb800, #ff7a18);
+      box-shadow:0 0 0 0 rgba(255,184,0,.6);
+      animation:promoX-pulse 1.6s ease-out infinite;
+    }
+    @keyframes promoX-pulse{to{box-shadow:0 0 0 12px rgba(255,184,0,0)}}
+
+    .promoX-title{margin:.35em 0 .15em;line-height:1.02;font-size:clamp(1.6rem,4.6vw,2.4rem);letter-spacing:-.01em}
+    .promoX-strong{
+      background:linear-gradient(120deg,#ffb800 0%,#ff7a18 50%,#ff3d81 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 0 24px rgba(255,184,0,.25);
+    }
+    .promoX-sub{margin:0 0 8px;color:#cfd6e6;opacity:.95;font-size:clamp(1rem,1.2vw,1.1rem)}
+
+    /* Equal-size CTAs */
+    .promoX-cta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .promoX-cta .btn{width:100%;min-height:48px;text-align:center;display:inline-grid;place-items:center}
+    @media (max-width:540px){ .promoX-cta{grid-template-columns:1fr} }
+
+    /* Uniform badges grid */
+    .promoX-badges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;padding:0}
+    @media (max-width:860px){ .promoX-badges{grid-template-columns:repeat(2,minmax(0,1fr))} }
+    @media (max-width:480px){ .promoX-badges{grid-template-columns:1fr} }
+    .promoX-badges li{
+      list-style:none;min-height:44px;display:flex;justify-content:center;align-items:center;
+      border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 10px;
+      background:rgba(255,255,255,.03);font-size:.92rem;text-align:center
+    }
+    .promoX-badges svg{width:16px;height:16px;fill:#e7eaf5;opacity:.9;margin-inline:0}
+
+    .promoX-meter{display:grid;gap:8px}
+    .promoX-meter-head{display:flex;align-items:baseline;gap:8px}
+    .promoX-meter-left{
+      font-weight:800;font-size:clamp(1.25rem,4vw,1.8rem);
+      background:linear-gradient(120deg,#ff7a18,#ffb800,#ff3d81);
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .promoX-meter-label{color:#cfd6e6;opacity:.92}
+    .promoX-bar{position:relative;height:14px;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04)}
+    .promoX-fill{
+      position:absolute;inset:0 100% 0 0;border-radius:inherit;
+      background:linear-gradient(90deg, rgba(255,122,24,.85), rgba(255,184,0,.9), rgba(255,61,129,.85));
+      box-shadow:0 0 24px rgba(255,184,0,.35) inset;transition:transform .5s cubic-bezier(.22,.61,.36,1)
+    }
+    .promoX-fine{margin:0;color:#9fa8bf;font-size:.82rem}
+
+    @media (prefers-reduced-motion:reduce){ html:focus-within{scroll-behavior:auto} .promoX-glow,.promoX-pulse{animation:none} }
+  </style>
+
+  <script>
+    (function(){
+      const sec = document.getElementById('promo');
+      if(!sec) return;
+      const total = +sec.dataset.spotsTotal || 100;
+      const leftAttr = +sec.dataset.spotsLeft || total;
+
+      // Allow override via ?left=NN
+      const params = new URLSearchParams(location.search);
+      const left = Math.max(0, Math.min(total, +(params.get('left') ?? leftAttr)));
+
+      const leftEl = sec.querySelector('#promoX-left');
+      const bar    = sec.querySelector('.promoX-bar');
+      const fill   = sec.querySelector('.promoX-fill');
+
+      leftEl.textContent = String(left);
+      bar.setAttribute('aria-valuenow', String(left));
+
+      const pct = (left/total);
+      fill.style.transform = `translateX(${-(1-pct)*100}%)`;
+
+      // Preselect audience + smooth scroll
+      const go = (aud) => {
+        const form = document.getElementById('waitlistForm');
+        if(form){
+          const company = document.getElementById('aud-company');
+          const app     = document.getElementById('aud-app');
+          if(aud==='company' && company) company.checked = true;
+          if(aud==='app' && app) app.checked = true;
+          const orgRow = document.getElementById('orgRow');
+          if(orgRow) orgRow.style.display = (aud==='company') ? '' : 'none';
+        }
+        const el = document.getElementById('waitlist');
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      };
+
+      sec.addEventListener('click', (e)=>{
+        const a = e.target.closest('a[data-audience]');
+        if(!a) return;
+        e.preventDefault();
+        go(a.getAttribute('data-audience'));
+      });
+    })();
+  </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -263,6 +438,17 @@
   </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
 <section id="metrics" class="section">
   <div class="container">
     <h2 class="grad">Metrics To Highlight</h2>
@@ -275,11 +461,19 @@
     <div class="grid4">
       <div class="ptile"><div class="num counter" data-count="98">0</div><div class="lbl">lower cost vs GPU baselines*</div></div>
       <div class="ptile"><div class="num counter" data-count="60">0</div><div class="lbl">faster first-token at the edge</div></div>
-      <div class="ptile"><div class="num counter" data-count="15">0</div><div class="lbl">redundant validation per job</div></div>
+      <div class="ptile"><div class="num counter" data-count="15">0</div><div class="lbl">redundant validations per job</div></div>
       <div class="ptile"><div class="num counter" data-count="100">0</div><div class="lbl">jobs ship signed receipts</div></div>
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
 
 <section id="pricing" class="section">
   <div class="container">
@@ -410,6 +604,14 @@
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
 
   <footer class="section">
     <div class="container" style="text-align:center">
