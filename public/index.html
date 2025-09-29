@@ -1173,6 +1173,218 @@
     }
   </style>
 </head>
+
+
+<!-- POPUP MODAL -->
+  <div id="welcomeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close popup" type="button">
+        <span aria-hidden="true">×</span>
+      </button>
+      
+      <div class="modal-body">
+        <div class="modal-icon">
+          <img src="assets/flame.png" alt="SlyOS">
+        </div>
+        
+        <h2 id="modalTitle" class="grad" style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 0.5em;">
+          Join the Future of Serverless AI
+        </h2>
+        
+        <p style="color: #c8cfdd; margin-bottom: 1.5em; line-height: 1.6;">
+          Help startups overcome cloud cost barriers. Be among the first 100 to access our verified, 
+          edge-first AI compute grid—and get <strong style="color: #ffb800;">1,000 free SLY credits</strong>.
+        </p>
+        
+        <form id="modalForm" class="modal-form" novalidate>
+          <input 
+            type="email" 
+            name="modalEmail" 
+            id="modalEmail"
+            placeholder="you@company.com" 
+            required 
+            style="width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: #e7eaf5; font-size: 1rem; margin-bottom: 12px;"
+          >
+          
+          <button type="submit" class="btn primary prominent" style="width: 100%; min-height: 52px;">
+            Claim Your Spot
+          </button>
+          
+          <div id="modalStatus" class="status fine" role="status" aria-live="polite"></div>
+        </form>
+        
+        <p class="fine" style="margin-top: 12px; text-align: center;">
+          No card required. Instant access to private beta.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal:not([hidden]) {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(4px);
+    }
+    
+    .modal-content {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      background: linear-gradient(180deg, rgba(15,17,25,0.98), rgba(6,7,10,0.98));
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: clamp(24px, 5vw, 40px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.22,0.61,0.36,1);
+    }
+    
+    .modal:not([hidden]) .modal-content {
+      transform: scale(1);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #e7eaf5;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .modal-close:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+    
+    .modal-body {
+      text-align: center;
+    }
+    
+    .modal-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      padding: 12px;
+      background: linear-gradient(120deg, rgba(255,122,24,0.1), rgba(255,184,0,0.1));
+      border-radius: 16px;
+      border: 1px solid rgba(255,184,0,0.2);
+    }
+    
+    .modal-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .modal-form {
+      margin-top: 1.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      .modal {
+        padding: 16px;
+      }
+      .modal-content {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+
+  <script>
+    // Welcome Modal
+    (function() {
+      const modal = document.getElementById('welcomeModal');
+      const modalClose = modal?.querySelector('.modal-close');
+      const modalBackdrop = modal?.querySelector('.modal-backdrop');
+      const modalForm = document.getElementById('modalForm');
+      const modalStatus = document.getElementById('modalStatus');
+      
+      if (!modal) return;
+      
+      // Check if user has already seen the modal
+      const hasSeenModal = sessionStorage.getItem('slyos_modal_seen');
+      
+      // Show modal after 2 seconds if not seen
+      if (!hasSeenModal) {
+        setTimeout(() => {
+          modal.hidden = false;
+          document.body.style.overflow = 'hidden';
+        }, 2000);
+      }
+      
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        sessionStorage.setItem('slyos_modal_seen', 'true');
+      }
+      
+      modalClose?.addEventListener('click', closeModal);
+      modalBackdrop?.addEventListener('click', closeModal);
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.hidden) {
+          closeModal();
+        }
+      });
+      
+      // Handle form submission
+      modalForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = modalForm.modalEmail.value.trim();
+        
+        if (!email || !email.includes('@')) {
+          if (modalStatus) {
+            modalStatus.textContent = 'Please enter a valid email.';
+            modalStatus.className = 'status fine error show';
+          }
+          return;
+        }
+        
+        if (modalStatus) {
+          modalStatus.textContent = '🎉 You're on the list! Check your email.';
+          modalStatus.className = 'status fine success show';
+        }
+        
+        modalForm.reset();
+        
+        setTimeout(() => {
+          closeModal();
+        }, 2000);
+      });
+    })();
+  </script>
+
+
+
+  
 <body>
   <!-- NAV -->
   <nav class="nav" aria-label="Primary">
