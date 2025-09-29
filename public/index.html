@@ -1,94 +1,1018 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>SlyOS — Decentralized AI. Verified. Cheaper.</title>
+  <link rel="apple-touch-icon" href="assets/flame.png">
+  <link rel="icon" type="image/png" href="assets/flame.png">
   <meta name="description" content="SlyOS turns idle smartphones into a verified AI compute grid. Edge-fast, validated, cheaper.">
-  <link rel="preload" href="styles.css" as="style"><link rel="stylesheet" href="styles.css">
-  
-  
-  
-
-
-
-
-
-  
-  
-  
-  
   
   <style>
-    a.uline{background:linear-gradient(currentColor,currentColor) left bottom/0 1px no-repeat}
-    a.uline:hover{background-size:100% 1px;transition:background-size .25s}
-    .flame-mask{-webkit-mask-image:url('assets/flame.png');mask-image:url('assets/flame.png');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;background:radial-gradient(circle at 30% 30%, rgba(255,122,24,.95), rgba(255,184,0,.85), rgba(255,61,129,.75))}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    /* === RESET & BASE === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { 
+      scroll-behavior: smooth;
+      font-size: clamp(14px, 1.5vw, 16px);
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #06070a;
+      color: #e7eaf5;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    img { max-width: 100%; height: auto; display: block; }
+    button { font: inherit; cursor: pointer; border: none; }
+    a { color: inherit; text-decoration: none; }
+    
+    /* === UTILITIES === */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 24px);
+    }
+    
+    .section { padding: clamp(40px, 8vw, 80px) 0; }
+    
+    .grad {
+      background: linear-gradient(120deg, #ff7a18, #ffb800, #ff3d81);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      text-align: center;
+      white-space: nowrap;
+    }
+    
+    .btn:hover { 
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+    }
+    
+    .btn.primary {
+      background: linear-gradient(120deg, #ff7a18, #ffb800);
+      border-color: transparent;
+      color: #111;
+    }
+    
+    .btn.primary:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 8px 24px rgba(255,184,0,0.3);
+    }
+    
+    .btn.prominent { 
+      padding: 14px 24px;
+      font-size: 1.05rem;
+    }
+    
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: clamp(16px, 3vw, 24px);
+    }
+    
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      margin: clamp(16px, 3vw, 24px) 0;
+    }
+    
+    .subtle { color: #9fa8bf; font-size: 0.9rem; }
+    .nowrap { white-space: nowrap; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+    
+    h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: 0.5em;
+      line-height: 1.1;
+    }
+    
+    h3 {
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      margin-bottom: 0.5em;
+    }
+    
+    /* === NAV === */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(6,7,10,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    
+    .nav .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 12px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+    
+    .logo img {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .navx-desktop {
+      display: flex;
+      gap: clamp(8px, 1.5vw, 14px);
+      align-items: center;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    
+    .navx-desktop a:not(.btn) {
+      padding: 8px 4px;
+      position: relative;
+    }
+    
+    .uline {
+      background: linear-gradient(currentColor, currentColor) left bottom/0 1px no-repeat;
+    }
+    
+    .uline:hover {
+      background-size: 100% 1px;
+      transition: background-size 0.25s;
+    }
+    
+    .navx-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    
+    .navx-bars {
+      display: inline-grid;
+      gap: 5px;
+    }
+    
+    .navx-bars i {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #e7eaf5;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+    
+    .nav[data-open="true"] .navx-bars i:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    
+    .nav[data-open="true"] .navx-bars i:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .nav[data-open="true"] .navx-bars i:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    
+    .navx-scrim {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 9998;
+    }
+    
+    .navx-panel {
+      display: none;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #06070a;
+      z-index: 9999;
+      transform: translateY(-100%);
+      transition: transform 0.3s cubic-bezier(0.22,0.61,0.36,1);
+    }
+    
+    .nav[data-open="true"] .navx-panel {
+      transform: translateY(0);
+    }
+    
+    .navx-panel-inner {
+      padding: max(24px, env(safe-area-inset-top)) 20px 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+    
+    .navx-close {
+      align-self: flex-end;
+      font-size: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: #e7eaf5;
+    }
+    
+    .navx-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      list-style: none;
+    }
+    
+    .navx-mobile a {
+      display: block;
+      padding: 12px 8px;
+      font-size: 1.15rem;
+    }
+    
+    @media (max-width: 860px) {
+      .navx-desktop { display: none !important; }
+      .navx-toggle { display: inline-flex !important; align-items: center; justify-content: center; }
+      .navx-scrim, .navx-panel { display: block; }
+    }
+    
+    /* === HERO === */
+    .hero {
+      min-height: 85vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(60px, 10vh, 100px) 0 clamp(40px, 8vh, 80px);
+      text-align: center;
+    }
+    
+    .hero__wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+    
+    .hero__title {
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.05;
+      margin: 0.25em 0 0.5em;
+      letter-spacing: -0.02em;
+    }
+    
+    .lede {
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      opacity: 0.9;
+      margin: 0 auto 2rem;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+    
+    .cta {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    
+    .metrics {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      list-style: none;
+    }
+    
+    .metrics li {
+      font-size: 0.9rem;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+    
+    @media (max-width: 600px) {
+      .cta { flex-direction: column; width: 100%; }
+      .cta .btn { width: 100%; }
+    }
+    
+    /* === PROMO === */
+    .promoX {
+      padding: clamp(12px, 3vw, 24px) 0;
+    }
+    
+    .promoX-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+    
+    .promoX-wrap {
+      display: grid;
+      gap: clamp(16px, 3vw, 24px);
+      padding: clamp(16px, 3vw, 24px);
+      grid-template-columns: 1fr;
+    }
+    
+    .promoX-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    
+    .promoX-pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 50% 50%, #ffb800, #ff7a18);
+      animation: pulse 1.6s ease-out infinite;
+    }
+    
+    @keyframes pulse {
+      to { box-shadow: 0 0 0 12px rgba(255,184,0,0); }
+    }
+    
+    .promoX-title {
+      margin: 0.5em 0 0.25em;
+      line-height: 1.05;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+    }
+    
+    .promoX-strong {
+      background: linear-gradient(120deg, #ffb800, #ff7a18, #ff3d81);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .promoX-sub {
+      color: #cfd6e6;
+      margin-bottom: 1rem;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+    }
+    
+    .promoX-cta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    
+    .promoX-cta .btn {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+    }
+    
+    .promoX-badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      list-style: none;
+    }
+    
+    .promoX-badges li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.03);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    
+    .promoX-badges svg {
+      width: 16px;
+      height: 16px;
+      fill: #e7eaf5;
+      flex-shrink: 0;
+    }
+    
+    .promoX-meter {
+      display: grid;
+      gap: 12px;
+    }
+    
+    .promoX-meter-head {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    
+    .promoX-meter-left {
+      font-weight: 800;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      background: linear-gradient(120deg, #ff7a18, #ffb800, #ff3d81);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .promoX-meter-label {
+      color: #cfd6e6;
+      font-size: 0.95rem;
+    }
+    
+    .promoX-bar {
+      position: relative;
+      height: 14px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+    }
+    
+    .promoX-fill {
+      position: absolute;
+      inset: 0 100% 0 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(255,122,24,0.85), rgba(255,184,0,0.9), rgba(255,61,129,0.85));
+      transition: transform 0.5s cubic-bezier(0.22,0.61,0.36,1);
+    }
+    
+    .promoX-fine {
+      color: #9fa8bf;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+    
+    @media (min-width: 768px) {
+      .promoX-wrap {
+        grid-template-columns: 1.2fr 1fr;
+        align-items: center;
+      }
+    }
+    
+    @media (max-width: 540px) {
+      .promoX-cta {
+        grid-template-columns: 1fr;
+      }
+      .promoX-badges {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* === HOW === */
+    .howx-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: clamp(16px, 3vw, 22px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+      flex-wrap: wrap;
+    }
+    
+    .howx-step {
+      flex: 1 1 200px;
+      min-width: 160px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 16px 12px;
+      background: rgba(255,255,255,0.02);
+      text-align: center;
+    }
+    
+    .howx-num {
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #ff7a18, #ffb800);
+      color: #111;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .howx-title {
+      font-weight: 600;
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+    
+    .howx-sub {
+      color: #c8cfdd;
+      font-size: 0.88rem;
+      margin: 0;
+    }
+    
+    .howx-conn {
+      width: 60px;
+      height: 6px;
+      border-radius: 6px;
+      background: #1a1f2b;
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 60px;
+    }
+    
+    .howx-conn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,122,24,0.1), rgba(255,184,0,0.85), rgba(255,61,129,0.1));
+      transform: translateX(-100%);
+      animation: sweep 2.4s cubic-bezier(0.22,0.61,0.36,1) infinite;
+    }
+    
+    @keyframes sweep {
+      to { transform: translateX(100%); }
+    }
+    
+    @media (max-width: 820px) {
+      .howx-wrap {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .howx-conn {
+        width: 60%;
+        height: 6px;
+        transform: rotate(90deg);
+      }
+      .howx-step {
+        width: 100%;
+      }
+    }
+    
+    /* === METRICS === */
+    .grid4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: clamp(12px, 2vw, 20px);
+    }
+    
+    .ptile {
+      text-align: center;
+      padding: clamp(20px, 3vw, 28px) clamp(14px, 2vw, 18px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .ptile .num {
+      font-weight: 800;
+      line-height: 1;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      background: linear-gradient(120deg, #ff7a18, #ffb800, #ff3d81);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.25em;
+    }
+    
+    .ptile .lbl {
+      color: #cfd6e6;
+      font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    }
+    
+    /* === PRICING === */
+    .pricing {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .controls {
+      margin-bottom: 1.5rem;
+    }
+    
+    .controls label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .range {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      outline: none;
+      -webkit-appearance: none;
+      margin: 8px 0;
+    }
+    
+    .range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(120deg, #ff7a18, #ffb800);
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    
+    .range::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(120deg, #ff7a18, #ffb800);
+      border-radius: 999px;
+      cursor: pointer;
+      border: none;
+    }
+    
+    output {
+      display: block;
+      margin-top: 8px;
+    }
+    
+    .centerStat {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    
+    .centerStat .num {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5em;
+    }
+    
+    .centerStat .lbl {
+      color: #cfd6e6;
+      font-size: 1rem;
+    }
+    
+    .totals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin: 1.5rem 0;
+    }
+    
+    .box {
+      text-align: center;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .box .num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ff7a18;
+    }
+    
+    .box .lbl {
+      font-size: 0.85rem;
+      color: #9fa8bf;
+      margin-top: 4px;
+    }
+    
+    #slyBox {
+      border-color: rgba(255,184,0,0.3);
+      background: rgba(255,184,0,0.05);
+    }
+    
+    .saveBar {
+      height: 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+    
+    .saveBar .fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff7a18, #ffb800, #ff3d81);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    
+    /* === MINE === */
+    .mgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: clamp(16px, 2.5vw, 24px);
+    }
+    
+    .mcard {
+      padding: clamp(20px, 3vw, 28px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .mcard h3 {
+      margin-bottom: 0.75em;
+      font-size: clamp(1.15rem, 2vw, 1.35rem);
+    }
+    
+    .mcard p {
+      color: #c8cfdd;
+      line-height: 1.6;
+    }
+    
+    /* === WHO === */
+    .wgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: clamp(16px, 2.5vw, 24px);
+    }
+    
+    .wtile {
+      padding: clamp(20px, 3vw, 28px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .wtile h3 {
+      margin-bottom: 0.5em;
+      font-size: clamp(1.15rem, 2vw, 1.35rem);
+    }
+    
+    .wtile p {
+      color: #c8cfdd;
+      line-height: 1.6;
+    }
+    
+    /* === COMPARE === */
+    .tablecmp {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    
+    th, td {
+      padding: clamp(10px, 2vw, 14px);
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    th {
+      font-weight: 700;
+      background: rgba(255,255,255,0.03);
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,184,0,0.15);
+      border: 1px solid rgba(255,184,0,0.3);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    @media (max-width: 600px) {
+      table {
+        font-size: 0.85rem;
+      }
+      th, td {
+        padding: 8px 6px;
+      }
+    }
+    
+    /* === FAQ === */
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    details {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    summary::after {
+      content: '+';
+      font-size: 1.5rem;
+      transition: transform 0.2s;
+    }
+    
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+    
+    details p {
+      margin-top: 12px;
+      color: #c8cfdd;
+      line-height: 1.6;
+    }
+    
+    /* === WAITLIST === */
+    .wl-card {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    
+    .seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 10px 0 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 6px;
+    }
+    
+    .seg input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .seg label {
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      color: #cfd6e6;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .seg input:checked + label {
+      background: linear-gradient(120deg, #ff7a18, #ffb800, #ff3d81);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      border-color: rgba(255,184,0,0.4);
+    }
+    
+    .row {
+      display: grid;
+      gap: 12px;
+    }
+    
+    input[type="email"],
+    input[type="text"] {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: #e7eaf5;
+      font-size: 1rem;
+    }
+    
+    input:focus {
+      outline: 2px solid rgba(255,184,0,0.5);
+      outline-offset: 2px;
+    }
+    
+    .fine {
+      color: #9fa8bf;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+    
+    .status {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+    }
+    
+    .status.show {
+      display: block;
+    }
+    
+    .status.success {
+      background: rgba(0,200,100,0.1);
+      border: 1px solid rgba(0,200,100,0.3);
+      color: #00ff88;
+    }
+    
+    .status.error {
+      background: rgba(255,50,50,0.1);
+      border: 1px solid rgba(255,50,50,0.3);
+      color: #ff6b6b;
+    }
+    
+    /* === FOOTER === */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0;
+      text-align: center;
+    }
+    
+    footer p {
+      color: #9fa8bf;
+      font-size: 0.9rem;
+    }
+    
+    footer a:hover {
+      color: #ffb800;
+    }
+    
+    /* === RESPONSIVE OVERRIDES === */
+    @media (max-width: 480px) {
+      .hero__title {
+        font-size: 1.75rem;
+      }
+      
+      .btn {
+        padding: 10px 16px;
+      }
+      
+      .btn.prominent {
+        padding: 12px 20px;
+      }
+      
+      .promoX-title {
+        font-size: 1.35rem;
+      }
+      
+      .grid4 {
+        grid-template-columns: 1fr;
+      }
+      
+      .totals {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    [hidden] { display: none !important; }
   </style>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 </head>
 <body>
-  <canvas id="nebula" class="bg-layer"></canvas>
-  <canvas id="mesh" class="bg-layer"></canvas>
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">
+    <div class="container inner">
+      <div class="logo">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ff7a18' d='M50 10 L70 30 L60 50 L80 70 L50 90 L20 70 L40 50 L30 30 Z'/%3E%3C/svg%3E" alt="">
+        <span class="grad">SlyOS</span>
+      </div>
 
-
-
-
-
-
-
-
-
-
-  <!-- NAV (your block) -->
-<nav class="nav navx" aria-label="Primary">
-  <div class="container inner">
-    <div class="logo">
-      <img src="assets/flame.png" alt="" aria-hidden="true">
-      <span class="grad">SlyOS</span>
-    </div>
-
-    <ul class="navx-desktop">
-      <li><a class="uline" href="#why">Why</a></li>
-      <li><a class="uline" href="#how">How</a></li>
-      <li><a class="uline" href="#pricing">Pricing</a></li>
-      <li><a class="uline" href="#mine">Mine SLY</a></li>
-      <li><a class="uline" href="#who">Who</a></li>
-      <li><a class="uline" href="#compare">Compare</a></li>
-      <li><a class="uline" href="#faqs">FAQs</a></li>
-      <li><a class="btn primary prominent" href="#waitlist" style="padding:10px 14px;border-radius:999px">Join waitlist</a></li>
-    </ul>
-
-    <button class="navx-toggle" aria-expanded="false" aria-controls="navx-panel">
-      <span class="sr-only">Open menu</span>
-      <span class="navx-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-    </button>
-  </div>
-
-
-
-
-
-
-  <div class="navx-scrim" hidden></div>
-  <aside id="navx-panel" class="navx-panel" role="dialog" aria-modal="true" aria-label="Menu" hidden>
-    <div class="navx-panel-inner">
-      <button class="navx-close" aria-label="Close menu"><span aria-hidden="true">×</span></button>
-      <ul class="navx-mobile">
+      <ul class="navx-desktop">
         <li><a class="uline" href="#why">Why</a></li>
         <li><a class="uline" href="#how">How</a></li>
         <li><a class="uline" href="#pricing">Pricing</a></li>
@@ -96,531 +1020,675 @@
         <li><a class="uline" href="#who">Who</a></li>
         <li><a class="uline" href="#compare">Compare</a></li>
         <li><a class="uline" href="#faqs">FAQs</a></li>
-        <li><a class="btn primary prominent" href="#waitlist" style="width:100%;min-height:52px;border-radius:999px">Join waitlist</a></li>
+        <li><a class="btn primary prominent" href="#waitlist">Join waitlist</a></li>
+      </ul>
+
+      <button class="navx-toggle" aria-expanded="false" aria-controls="navx-panel">
+        <span class="sr-only">Open menu</span>
+        <span class="navx-bars" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+      </button>
+    </div>
+
+    <div class="navx-scrim" hidden></div>
+    <aside id="navx-panel" class="navx-panel" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <div class="navx-panel-inner">
+        <button class="navx-close" aria-label="Close menu"><span aria-hidden="true">×</span></button>
+        <ul class="navx-mobile">
+          <li><a class="uline" href="#why">Why</a></li>
+          <li><a class="uline" href="#how">How</a></li>
+          <li><a class="uline" href="#pricing">Pricing</a></li>
+          <li><a class="uline" href="#mine">Mine SLY</a></li>
+          <li><a class="uline" href="#who">Who</a></li>
+          <li><a class="uline" href="#compare">Compare</a></li>
+          <li><a class="uline" href="#faqs">FAQs</a></li>
+          <li><a class="btn primary prominent" href="#waitlist">Join waitlist</a></li>
+        </ul>
+      </div>
+    </aside>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero container" id="top">
+    <div class="hero__wrap">
+      <p class="eyebrow">Launch preview</p>
+
+      <h1 class="grad hero__title">
+        Decentralized AI, <span class="nowrap">verified at the edge.</span>
+      </h1>
+
+      <p class="lede">
+        SlyOS turns idle smartphones into a trust-minimized AI grid. Outputs are
+        validated, latency hugs the edge, and costs finally scale with reality—not rack space.
+      </p>
+
+      <div class="cta">
+        <a class="btn primary prominent" href="#waitlist">Join waitlist</a>
+        <a class="btn" href="#pricing">See pricing</a>
+      </div>
+
+      <ul class="metrics" role="list">
+        <li><strong>~70%</strong> lower inference cost</li>
+        <li><strong>Proof-verified</strong> outputs</li>
+        <li><strong>Edge-first</strong> latency</li>
       </ul>
     </div>
-  </aside>
+  </header>
 
+  <!-- PROMO -->
+  <section id="promo" class="promoX" data-spots-total="100" data-spots-left="100">
+    <div class="container">
+      <div class="promoX-card">
+        <div class="promoX-wrap">
+          <div class="promoX-copy">
+            <div class="promoX-pill">
+              <span class="promoX-pulse" aria-hidden="true"></span>
+              1,000 SLY credits — free
+            </div>
 
+            <h2 class="promoX-title grad">
+              First <span class="promoX-strong">100 signups</span> get paid to try SlyOS.
+            </h2>
 
+            <p class="promoX-sub">No card. Signed receipts. Edge-fast.</p>
 
+            <div class="promoX-cta">
+              <a class="btn primary prominent" href="#waitlist" data-audience="company">Claim credits — company</a>
+              <a class="btn" href="#waitlist" data-audience="app">Claim credits — individual</a>
+            </div>
 
+            <ul class="promoX-badges" role="list">
+              <li>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.4 10.6 3.8 8l-.9.9 3.5 3.5L13 5.8l-.9-.9z"/></svg>
+                Proof-verified results
+              </li>
+              <li>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l6 3v4c0 4-2.6 6.7-6 7C4.6 14.7 2 12 2 8V4z"/></svg>
+                Private pools & policy control
+              </li>
+              <li>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h4l1 3 2-6 1 3h4"/></svg>
+                Edge-first latency
+              </li>
+            </ul>
+          </div>
 
+          <div class="promoX-meter">
+            <div class="promoX-meter-head">
+              <span class="promoX-meter-left" id="promoX-left">100</span>
+              <span class="promoX-meter-label">credits bundles left</span>
+            </div>
+            <div class="promoX-bar" aria-label="Bundles remaining" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+              <i class="promoX-fill"></i>
+            </div>
+            <p class="promoX-fine">Private beta · Q4 2025. *Illustrative savings in Pricing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <style>
-    [hidden]{display:none!important}
-    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-    .navx,.navx-panel,.navx-scrim{isolation:isolate}
-    .navx{position:sticky;top:0;z-index:999;background:rgba(6,7,10,.72);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .navx .inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px}
-    .navx ul{list-style:none;margin:0;padding:0}
-    .navx-desktop{display:flex;gap:14px;align-items:center}
-    .navx-toggle{display:none;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:12px;padding:10px 12px;line-height:0}
-    .navx-toggle:focus-visible{outline:2px solid #ffb800;outline-offset:2px}
-    .navx-bars{display:inline-grid;gap:5px}
-    .navx-bars i{display:block;width:22px;height:2px;background:#e7eaf5;border-radius:2px;transition:transform .25s ease,opacity .2s ease}
-    .navx[data-open="true"] .navx-bars i:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .navx[data-open="true"] .navx-bars i:nth-child(2){opacity:0}
-    .navx[data-open="true"] .navx-bars i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-    .navx-scrim{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .24s ease;z-index:9998}
-    .navx[data-open="true"] .navx-scrim{opacity:1;pointer-events:auto}
-    .navx-panel{position:fixed;inset:0;width:100vw;height:100vh;transform:translateY(-100%);transition:transform .28s cubic-bezier(.22,.61,.36,1);background:#000;z-index:9999}
-    .navx[data-open="true"] .navx-panel{transform:translateY(0)}
-    .navx-panel-inner{padding:max(24px, env(safe-area-inset-top)) 20px 28px 20px;display:flex;flex-direction:column;gap:14px;height:100%}
-    .navx-close{align-self:flex-end;font-size:28px;line-height:1;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#e7eaf5}
-    .navx-mobile{display:flex;flex-direction:column;gap:12px}
-    .navx-mobile a{display:block;padding:12px 2px;font-size:20px}
-    .navx-mobile .btn{width:100%;min-height:52px;border-radius:999px}
-    @media (max-width:860px){
-      .navx-desktop{display:none!important}
-      .navx-toggle{display:inline-flex!important;align-items:center;justify-content:center}
-    }
-    @media (min-width:861px){
-      .navx-panel,.navx-scrim{display:none!important}
-    }
-    .navx-lock{overflow:hidden;touch-action:none}
-  </style>
+  <!-- HOW -->
+<section id="how" class="section">
+  <div class="container">
+    <h2 class="grad">How It Works</h2>
+    <div class="rule"></div>
+    
+    <div class="howx-wrap" aria-label="SlyOS job flow in four steps">
+      <div class="howx-step" role="group" aria-label="Submit">
+        <div class="howx-num">1</div>
+        <p class="howx-title">Submit</p>
+        <p class="howx-sub">Client sends job + constraints.</p>
+      </div>
+      
+      <div class="howx-conn" aria-hidden="true"></div>
+      
+      <div class="howx-step" role="group" aria-label="Shard">
+        <div class="howx-num">2</div>
+        <p class="howx-title">Shard</p>
+        <p class="howx-sub">Coordinator splits & routes slices.</p>
+      </div>
+      
+      <div class="howx-conn" aria-hidden="true"></div>
+      
+      <div class="howx-step" role="group" aria-label="Validate">
+        <div class="howx-num">3</div>
+        <p class="howx-title">Validate</p>
+        <p class="howx-sub">Phones run; slices cross-check.</p>
+      </div>
+      
+      <div class="howx-conn" aria-hidden="true"></div>
+      
+      <div class="howx-step" role="group" aria-label="Merge">
+        <div class="howx-num">4</div>
+        <p class="howx-title">Merge</p>
+        <p class="howx-sub">Coordinator assembles result + receipt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* HOW Section Styles */
+.howx-wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+}
+
+.howx-step {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: clamp(18px, 3vw, 24px) clamp(12px, 2vw, 16px);
+  background: rgba(255,255,255,0.02);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.howx-num {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #ff7a18, #ffb800);
+  color: #111;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.howx-title {
+  font-weight: 700;
+  margin: 0 0 8px;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  color: #e7eaf5;
+}
+
+.howx-sub {
+  color: #c8cfdd;
+  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.howx-conn {
+  width: 80px;
+  height: 6px;
+  border-radius: 6px;
+  background: #1a1f2b;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  align-self: center;
+  margin: 0 -8px;
+}
+
+.howx-conn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    rgba(255,122,24,0.1), 
+    rgba(255,184,0,0.85), 
+    rgba(255,61,129,0.1)
+  );
+  transform: translateX(-100%);
+  animation: sweep 2.4s cubic-bezier(0.22,0.61,0.36,1) infinite;
+}
+
+@keyframes sweep {
+  to { transform: translateX(100%); }
+}
+
+/* Tablet & Mobile */
+@media (max-width: 820px) {
+  .howx-wrap {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .howx-step {
+    width: 100%;
+  }
+  
+  .howx-conn {
+    width: 6px;
+    height: 60px;
+    align-self: center;
+    margin: -8px 0;
+  }
+  
+  .howx-conn::before {
+    background: linear-gradient(180deg, 
+      rgba(255,122,24,0.1), 
+      rgba(255,184,0,0.85), 
+      rgba(255,61,129,0.1)
+    );
+  }
+}
+
+@media (max-width: 600px) {
+  .howx-num {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .howx-conn {
+    height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .howx-conn::before {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+</style>
+  
+  <!-- METRICS -->
+  <section id="metrics" class="section">
+    <div class="container">
+      <h2 class="grad">Metrics To Highlight</h2>
+      <div class="rule"></div>
+      <div class="grid4">
+        <div class="ptile">
+          <div class="num counter" data-count="98">98%</div>
+          <div class="lbl">lower cost vs GPU baselines*</div>
+        </div>
+        <div class="ptile">
+          <div class="num counter" data-count="60">60%</div>
+          <div class="lbl">faster first-token at the edge</div>
+        </div>
+        <div class="ptile">
+          <div class="num counter" data-count="15">15x</div>
+          <div class="lbl">redundant validations per job</div>
+        </div>
+        <div class="ptile">
+          <div class="num counter" data-count="100">100%</div>
+          <div class="lbl">jobs ship signed receipts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2 class="grad">Pricing</h2>
+      <div class="rule"></div>
+      <div class="card pricing">
+        <div class="controls">
+          <div>
+            <label for="tokens">Monthly tokens (1–200M)</label><br>
+            <input id="tokens" class="range" type="range" min="1" max="200" value="20">
+            <output id="tokensOut" class="subtle">20M tokens/month</output>
+          </div>
+        </div>
+        <div class="centerStat card">
+          <div class="num grad" id="savingsPctBig">up to 70%</div>
+          <div class="lbl">Savings vs average of AWS & GCP</div>
+        </div>
+        <div class="totals">
+          <div class="box" id="slyBox">
+            <div class="num" id="slyTotal">$400</div>
+            <div class="lbl">SlyOS total</div>
+          </div>
+          <div class="box">
+            <div class="num" id="awsTotal">$1,200</div>
+            <div class="lbl">AWS total</div>
+          </div>
+          <div class="box">
+            <div class="num" id="gcpTotal">$1,400</div>
+            <div class="lbl">GCP total</div>
+          </div>
+        </div>
+        <div class="saveBar"><div class="fill" style="width: 70%;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINE -->
+  <section id="mine" class="section">
+    <div class="container">
+      <h2 class="grad">Mine SLY</h2>
+      <div class="rule"></div>
+      <div class="mgrid">
+        <div class="mcard">
+          <h3 class="grad"><span>Earn credits</span></h3>
+          <p>Validated workloads turn into SLY usage credits that offset your future jobs.</p>
+        </div>
+        <div class="mcard">
+          <h3 class="grad"><span>Green impact</span></h3>
+          <p>Tap idle phones instead of spinning new servers. Less stranded capacity.</p>
+        </div>
+        <div class="mcard">
+          <h3 class="grad"><span>Transparent by design</span></h3>
+          <p>Per-task receipts: job type, duration, replication %, anomalies, timings.</p>
+        </div>
+        <div class="mcard">
+          <h3 class="grad"><span>Idle-first, capped</span></h3>
+          <p>Opportunistic background tasks with device caps to avoid interference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section id="who" class="section">
+    <div class="container">
+      <h2 class="grad">Who It's For</h2>
+      <div class="rule"></div>
+      <div class="wgrid">
+        <div class="wtile">
+          <h3 class="grad">Startups</h3>
+          <p>Spin up evals and inference without chasing GPUs.</p>
+        </div>
+        <div class="wtile">
+          <h3 class="grad">Enterprises</h3>
+          <p>Private pools + receipts for auditability and policy control.</p>
+        </div>
+        <div class="wtile">
+          <h3 class="grad">Researchers</h3>
+          <p>Cheap bursts for experiments and benchmarks.</p>
+        </div>
+        <div class="wtile">
+          <h3 class="grad">Developers</h3>
+          <p>Edge-aware inference & eval pipelines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section id="compare" class="section">
+    <div class="container">
+      <h2 class="grad">How We Compare</h2>
+      <div class="rule"></div>
+      <div class="tablecmp">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Traditional Clouds</th>
+              <th>Generic "Distributed"</th>
+              <th class="grad">SlyOS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Validation built-in</td>
+              <td>✕</td>
+              <td>~</td>
+              <td>✔</td>
+            </tr>
+            <tr>
+              <td>Edge-fast first token</td>
+              <td>~</td>
+              <td>✕</td>
+              <td>✔</td>
+            </tr>
+            <tr>
+              <td>Transparent receipts</td>
+              <td>✕</td>
+              <td>✕</td>
+              <td>✔</td>
+            </tr>
+            <tr>
+              <td>Planet-scale elasticity</td>
+              <td>GPU-limited</td>
+              <td>Slow</td>
+              <td>✔</td>
+            </tr>
+            <tr>
+              <td>Cost</td>
+              <td><span class="badge">High</span></td>
+              <td><span class="badge">Unclear</span></td>
+              <td><span class="badge">Up to 98% lower*</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="subtle">*Illustrative savings shown in Pricing.</p>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="section">
+    <div class="container">
+      <h2 class="grad">FAQs</h2>
+      <div class="rule"></div>
+      <div class="faq">
+        <details>
+          <summary>Is this crypto?</summary>
+          <p>No. SLY are platform usage credits—no coins.</p>
+        </details>
+        <details>
+          <summary>What workloads?</summary>
+          <p>Embeddings, lightweight inference, bursty evals first; expanding via device-class routing.</p>
+        </details>
+        <details>
+          <summary>How do I trust results?</summary>
+          <p>Receipts include replication %, consensus details, anomalies, and timings.</p>
+        </details>
+        <details>
+          <summary>Can I restrict where jobs run?</summary>
+          <p>Yes—private pools or vetted contributor pools with policy controls.</p>
+        </details>
+        <details>
+          <summary>What about SLAs?</summary>
+          <p>We measure validated completion time, not just raw device speed.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section id="waitlist" class="section">
+    <div class="container">
+      <h2 class="grad">Join the waitlist</h2>
+      <div class="rule"></div>
+      <div class="wl-card centerStat card">
+        <p style="margin-bottom:16px">Onboarding in phases. Add your email for early access.</p>
+        <form id="waitlistForm" class="form" novalidate aria-describedby="status">
+          <div class="row">
+            <label class="sr-only" for="email">Email</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required aria-label="Email">
+            
+            <fieldset style="border:0;padding:0;margin:0">
+              <legend class="sr-only">I'm joining as</legend>
+              <div class="seg" role="radiogroup" aria-label="I'm joining as">
+                <input type="radio" id="aud-company" name="audience" value="company" checked>
+                <label for="aud-company">Company</label>
+                <input type="radio" id="aud-app" name="audience" value="app">
+                <label for="aud-app">Individual</label>
+              </div>
+            </fieldset>
+            
+            <div id="orgRow">
+              <label class="sr-only" for="org">Company</label>
+              <input id="org" name="org" type="text" placeholder="Company (optional)">
+            </div>
+          </div>
+          
+          <div class="cta" style="margin-top:16px">
+            <button class="btn primary prominent" type="submit" style="width:100%">Join waitlist</button>
+          </div>
+          
+          <div id="status" class="status fine" role="status" aria-live="polite"></div>
+          <p class="fine">We store your email, audience type, and (if provided) company to manage access invites.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="section">
+    <div class="container">
+      <p>© <span id="year">2025</span> SlyOS — Decentralized AI. Verified. Cheaper. · <a class="uline" href="#privacy">Privacy Policy</a></p>
+    </div>
+  </footer>
 
   <script>
-    (function(){
-      const nav   = document.querySelector('.nav.navx');
-      const btn   = nav.querySelector('.navx-toggle');
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Navigation
+    (function() {
+      const nav = document.querySelector('.nav');
+      const btn = nav.querySelector('.navx-toggle');
       const panel = nav.querySelector('#navx-panel');
       const scrim = nav.querySelector('.navx-scrim');
       const close = nav.querySelector('.navx-close');
-      function open(){ nav.dataset.open='true'; btn.setAttribute('aria-expanded','true'); panel.hidden=false; scrim.hidden=false; document.body.classList.add('navx-lock'); const first=panel.querySelector('a,button'); if(first) setTimeout(()=>first.focus({preventScroll:true}), 10) }
-      function closeMenu(){ nav.dataset.open='false'; btn.setAttribute('aria-expanded','false'); document.body.classList.remove('navx-lock'); setTimeout(()=>{ panel.hidden=true; scrim.hidden=true; },300); btn.focus({preventScroll:true}) }
-      btn.addEventListener('click', ()=> (nav.dataset.open==='true'?closeMenu():open()));
+      
+      function open() {
+        nav.dataset.open = 'true';
+        btn.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+        scrim.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeMenu() {
+        nav.dataset.open = 'false';
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          panel.hidden = true;
+          scrim.hidden = true;
+        }, 300);
+      }
+      
+      btn.addEventListener('click', () => nav.dataset.open === 'true' ? closeMenu() : open());
       close.addEventListener('click', closeMenu);
       scrim.addEventListener('click', closeMenu);
-      panel.addEventListener('click', e=>{ if(e.target.matches('a')) closeMenu(); });
-      document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeMenu(); });
-      const mq = window.matchMedia('(min-width: 861px)');
-      mq.addEventListener('change', () => { if(mq.matches) closeMenu(); });
+      panel.addEventListener('click', e => {
+        if (e.target.matches('a')) closeMenu();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMenu();
+      });
     })();
-  </script>
-</nav>
-
-
-
-
-
-
-
-
-
-  <!-- Drop-in hero (paste into index.html). Uses your existing .btn/.primary/.prominent classes. -->
-<header class="hero hero--full container hero-mobile" id="top">
-  <div class="hero__wrap">
-    <p class="eyebrow">Launch preview</p>
-
-    <h1 class="grad hero__title">
-      Decentralized AI, <span class="nowrap">verified at the edge.</span>
-    </h1>
-
-    <p class="lede lede--lg">
-      SlyOS turns idle smartphones into a trust-minimized AI grid. Outputs are
-      validated, latency hugs the edge, and costs finally scale with reality—not rack space.
-    </p>
-
-    <div class="cta">
-      <a class="btn primary prominent" href="#waitlist">Join waitlist</a>
-      <a class="btn" href="#pricing">See pricing</a>
-    </div>
-
-    <ul class="metrics" role="list">
-      <li><strong>~70%</strong> lower inference cost</li>
-      <li><strong>Proof-verified</strong> outputs</li>
-      <li><strong>Edge-first</strong> latency</li>
-    </ul>
-  </div>
-
-  
-</header>
-
-<style>
-/* --- Hero add-ons (inline for convenience; move to styles.css later if you want) --- */
-.hero--full{min-height:90vh;display:grid;place-items:center;position:relative;overflow:hidden;padding-block:4rem}
-.hero__wrap{max-width:64rem;margin-inline:auto;text-align:center;padding-inline:clamp(1rem,4vw,2rem)}
-.hero__title{font-size:clamp(2.25rem,4.5vw,4rem);line-height:1.05;margin:.25em 0 .4em}
-.lede--lg{font-size:clamp(1.125rem,1.3vw+1rem,1.375rem);opacity:.9;margin:0 auto 1.5rem;max-width:48rem}
-.eyebrow{font-size:.875rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin:0}
-.btn.prominent{padding:.95rem 1.25rem;font-size:1rem}
-.cta{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:.25rem}
-.metrics{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;padding:0}
-.metrics li{list-style:none;font-size:.95rem;opacity:.85;padding:.5rem .75rem;border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;backdrop-filter:saturate(120%) blur(2px)}
-.hero__art{position:absolute;inset:0;pointer-events:none}
-.hero__glow{position:absolute;inset:-20% -10% -30% -10%;
-  background:radial-gradient(60% 60% at 50% 30%, rgba(0,150,255,.18), rgba(0,0,0,0));
-  filter:blur(40px)}
-.hero__art img{position:absolute;right:max(5vw,2rem);bottom:-1rem;width:min(32vw,420px);opacity:.35}
-.nowrap{white-space:nowrap}
-</style>
-
-
-
-
-
-
-
-<!-- === AGGRESSIVE PROMO (drop right after </nav>) === -->
-<section id="promo" class="promoX" data-spots-total="100" data-spots-left="100">
-  <div class="container">
-    <div class="promoX-card">
-      <div class="promoX-wrap">
-        <div class="promoX-copy">
-          <div class="promoX-pill">
-            <span class="promoX-pulse" aria-hidden="true"></span>
-            1,000 SLY credits — free
-          </div>
-
-          <h2 class="promoX-title grad">
-            First <span class="promoX-strong">100 signups</span> get paid to try SlyOS.
-          </h2>
-
-          <p class="promoX-sub">No card. Signed receipts. Edge-fast.</p>
-
-          <div class="promoX-cta">
-            <a class="btn primary prominent" href="#waitlist" data-audience="company">Claim credits — company</a>
-            <a class="btn" href="#waitlist" data-audience="app">Claim credits — individual</a>
-          </div>
-
-          <ul class="promoX-badges" role="list">
-            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.4 10.6 3.8 8l-.9.9 3.5 3.5L13 5.8l-.9-.9z"/></svg> Proof-verified results</li>
-            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l6 3v4c0 4-2.6 6.7-6 7C4.6 14.7 2 12 2 8V4z"/></svg> Private pools & policy control</li>
-            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h4l1 3 2-6 1 3h4"/></svg> Edge-first latency</li>
-          </ul>
-        </div>
-
-        <div class="promoX-meter">
-          <div class="promoX-meter-head">
-            <span class="promoX-meter-left" id="promoX-left">100</span>
-            <span class="promoX-meter-label">credits bundles left</span>
-          </div>
-          <div class="promoX-bar" aria-label="Bundles remaining" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
-            <i class="promoX-fill"></i>
-          </div>
-          <p class="promoX-fine">Private beta · Q4 2025. *Illustrative savings in Pricing.</p>
-        </div>
-      </div>
-
-      <span class="promoX-glow" aria-hidden="true"></span>
-    </div>
-  </div>
-
-  <style>
-    .promoX{position:relative;padding:clamp(12px,3vw,18px) 0}
-    .promoX-card{
-      position:relative;overflow:hidden;border-radius:22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-      border:1px solid rgba(255,255,255,.14);
-    }
-    .promoX-glow{
-      position:absolute;inset:-2px;border-radius:24px;pointer-events:none;
-      background:conic-gradient(from 0deg at 50% 50%, #ff7a18, #ffb800, #ff3d81, #ff7a18);
-      filter:blur(22px);opacity:.18;mix-blend:screen;animation:promoX-rotate 8s linear infinite;
-    }
-    @keyframes promoX-rotate{to{transform:rotate(1turn)}}
-
-    .promoX-wrap{display:grid;gap:14px;padding:clamp(14px,2.5vw,22px);grid-template-columns:1fr}
-    @media (min-width:860px){ .promoX-wrap{grid-template-columns:1fr 1fr;align-items:center} }
-
-    .promoX-pill{
-      display:inline-flex;align-items:center;gap:8px;
-      border:1px solid rgba(255,255,255,.16);
-      padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,.05);font-weight:700;letter-spacing:.02em;
-    }
-    .promoX-pulse{
-      width:10px;height:10px;border-radius:999px;
-      background:radial-gradient(circle at 50% 50%, #ffb800, #ff7a18);
-      box-shadow:0 0 0 0 rgba(255,184,0,.6);
-      animation:promoX-pulse 1.6s ease-out infinite;
-    }
-    @keyframes promoX-pulse{to{box-shadow:0 0 0 12px rgba(255,184,0,0)}}
-
-    .promoX-title{margin:.35em 0 .15em;line-height:1.02;font-size:clamp(1.6rem,4.6vw,2.4rem);letter-spacing:-.01em}
-    .promoX-strong{
-      background:linear-gradient(120deg,#ffb800 0%,#ff7a18 50%,#ff3d81 100%);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-      text-shadow:0 0 24px rgba(255,184,0,.25);
-    }
-    .promoX-sub{margin:0 0 8px;color:#cfd6e6;opacity:.95;font-size:clamp(1rem,1.2vw,1.1rem)}
-
-    /* Equal-size CTAs */
-    .promoX-cta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .promoX-cta .btn{width:100%;min-height:48px;text-align:center;display:inline-grid;place-items:center}
-    @media (max-width:540px){ .promoX-cta{grid-template-columns:1fr} }
-
-    /* Uniform badges grid */
-    .promoX-badges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;padding:0}
-    @media (max-width:860px){ .promoX-badges{grid-template-columns:repeat(2,minmax(0,1fr))} }
-    @media (max-width:480px){ .promoX-badges{grid-template-columns:1fr} }
-    .promoX-badges li{
-      list-style:none;min-height:44px;display:flex;justify-content:center;align-items:center;
-      border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 10px;
-      background:rgba(255,255,255,.03);font-size:.92rem;text-align:center
-    }
-    .promoX-badges svg{width:16px;height:16px;fill:#e7eaf5;opacity:.9;margin-inline:0}
-
-    .promoX-meter{display:grid;gap:8px}
-    .promoX-meter-head{display:flex;align-items:baseline;gap:8px}
-    .promoX-meter-left{
-      font-weight:800;font-size:clamp(1.25rem,4vw,1.8rem);
-      background:linear-gradient(120deg,#ff7a18,#ffb800,#ff3d81);
-      -webkit-background-clip:text;background-clip:text;color:transparent
-    }
-    .promoX-meter-label{color:#cfd6e6;opacity:.92}
-    .promoX-bar{position:relative;height:14px;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04)}
-    .promoX-fill{
-      position:absolute;inset:0 100% 0 0;border-radius:inherit;
-      background:linear-gradient(90deg, rgba(255,122,24,.85), rgba(255,184,0,.9), rgba(255,61,129,.85));
-      box-shadow:0 0 24px rgba(255,184,0,.35) inset;transition:transform .5s cubic-bezier(.22,.61,.36,1)
-    }
-    .promoX-fine{margin:0;color:#9fa8bf;font-size:.82rem}
-
-    @media (prefers-reduced-motion:reduce){ html:focus-within{scroll-behavior:auto} .promoX-glow,.promoX-pulse{animation:none} }
-  </style>
-
-  <script>
-    (function(){
+    
+    // Promo meter
+    (function() {
       const sec = document.getElementById('promo');
-      if(!sec) return;
+      if (!sec) return;
       const total = +sec.dataset.spotsTotal || 100;
       const leftAttr = +sec.dataset.spotsLeft || total;
-
-      // Allow override via ?left=NN
       const params = new URLSearchParams(location.search);
       const left = Math.max(0, Math.min(total, +(params.get('left') ?? leftAttr)));
-
       const leftEl = sec.querySelector('#promoX-left');
-      const bar    = sec.querySelector('.promoX-bar');
-      const fill   = sec.querySelector('.promoX-fill');
-
+      const bar = sec.querySelector('.promoX-bar');
+      const fill = sec.querySelector('.promoX-fill');
+      
       leftEl.textContent = String(left);
       bar.setAttribute('aria-valuenow', String(left));
-
-      const pct = (left/total);
-      fill.style.transform = `translateX(${-(1-pct)*100}%)`;
-
-      // Preselect audience + smooth scroll
+      const pct = left / total;
+      fill.style.transform = `translateX(${-(1 - pct) * 100}%)`;
+      
       const go = (aud) => {
         const form = document.getElementById('waitlistForm');
-        if(form){
+        if (form) {
           const company = document.getElementById('aud-company');
-          const app     = document.getElementById('aud-app');
-          if(aud==='company' && company) company.checked = true;
-          if(aud==='app' && app) app.checked = true;
+          const app = document.getElementById('aud-app');
+          if (aud === 'company' && company) company.checked = true;
+          if (aud === 'app' && app) app.checked = true;
           const orgRow = document.getElementById('orgRow');
-          if(orgRow) orgRow.style.display = (aud==='company') ? '' : 'none';
+          if (orgRow) orgRow.style.display = aud === 'company' ? '' : 'none';
         }
         const el = document.getElementById('waitlist');
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
-
-      sec.addEventListener('click', (e)=>{
+      
+      sec.addEventListener('click', (e) => {
         const a = e.target.closest('a[data-audience]');
-        if(!a) return;
+        if (!a) return;
         e.preventDefault();
         go(a.getAttribute('data-audience'));
       });
     })();
+    
+    // Pricing calculator
+    (function() {
+      const tokensInput = document.getElementById('tokens');
+      const tokensOut = document.getElementById('tokensOut');
+      const slyTotal = document.getElementById('slyTotal');
+      const awsTotal = document.getElementById('awsTotal');
+      const gcpTotal = document.getElementById('gcpTotal');
+      const savingsPct = document.getElementById('savingsPctBig');
+      const saveBar = document.querySelector('.saveBar .fill');
+      
+      function calc() {
+        const tokens = +tokensInput.value;
+        tokensOut.textContent = `${tokens}M tokens/month`;
+        
+        const sly = tokens * 20;
+        const aws = tokens * 60;
+        const gcp = tokens * 70;
+        const avg = (aws + gcp) / 2;
+        const savings = Math.round(((avg - sly) / avg) * 100);
+        
+        slyTotal.textContent = `${sly.toLocaleString()}`;
+        awsTotal.textContent = `${aws.toLocaleString()}`;
+        gcpTotal.textContent = `${gcp.toLocaleString()}`;
+        savingsPct.textContent = `up to ${savings}%`;
+        saveBar.style.width = `${savings}%`;
+      }
+      
+      tokensInput.addEventListener('input', calc);
+      calc();
+    })();
+    
+    // Waitlist form
+    (function() {
+      const form = document.getElementById('waitlistForm');
+      const status = document.getElementById('status');
+      const orgRow = document.getElementById('orgRow');
+      const audInputs = form.querySelectorAll('input[name="audience"]');
+      
+      audInputs.forEach(input => {
+        input.addEventListener('change', () => {
+          orgRow.style.display = input.value === 'company' ? '' : 'none';
+        });
+      });
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = form.email.value.trim();
+        
+        if (!email || !email.includes('@')) {
+          status.textContent = 'Please enter a valid email.';
+          status.className = 'status fine error show';
+          return;
+        }
+        
+        status.textContent = 'Thanks! You're on the list.';
+        status.className = 'status fine success show';
+        form.reset();
+        
+        setTimeout(() => {
+          status.className = 'status fine';
+        }, 5000);
+      });
+    })();
   </script>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section id="how" class="section">
-  <div class="container">
-    <h2 class="grad">How</h2>
-    <div class="rule"></div>
-    <div class="howx">
-      <style>
-        .howx{--ink:#e7eaf5;--muted:#c8cfdd;--a1:#ff7a18;--a2:#ffb800;--bgSoft:rgba(255,255,255,.03)}
-        .howx-wrap{display:flex;align-items:center;gap:18px;max-width:1100px;margin:18px auto;padding:22px;border:1px solid rgba(255,255,255,.08);border-radius:20px;background:linear-gradient(180deg,var(--bgSoft),transparent)}
-        .howx-step{flex:1 1 0;min-width:170px;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 14px 14px;background:rgba(255,255,255,.02);text-align:center}
-        .howx-num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:999px;background:linear-gradient(120deg,var(--a1),var(--a2));color:#111;font-weight:700;margin-bottom:10px}
-        .howx-title{color:var(--ink);font-weight:600;margin:0 0 6px}
-        .howx-sub{color:var(--muted);font-size:14px;margin:0}
-        .howx-conn{width:88px;height:8px;border-radius:6px;background:#1a1f2b;position:relative;overflow:hidden;flex:0 0 88px}
-        .howx-conn::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,122,24,.1),rgba(255,184,0,.85),rgba(255,61,129,.1));transform:translateX(-100%);animation:howx-sweep 2.4s cubic-bezier(.22,.61,.36,1) infinite}
-        @keyframes howx-sweep{to{transform:translateX(100%)}}
-        @media (max-width:820px){.howx-wrap{flex-direction:column;gap:10px}.howx-conn{width:60%;height:7px}.howx-step{width:100%}}
-        @media (prefers-reduced-motion:reduce){.howx-conn::before{animation:none;transform:translateX(0)}}
-      </style>
-      <div class="howx-wrap" aria-label="SlyOS job flow in four steps">
-        <div class="howx-step" role="group" aria-label="Submit"><div class="howx-num">1</div><p class="howx-title">Submit</p><p class="howx-sub">Client sends job + constraints.</p></div>
-        <div class="howx-conn" aria-hidden="true"></div>
-        <div class="howx-step" role="group" aria-label="Shard"><div class="howx-num">2</div><p class="howx-title">Shard</p><p class="howx-sub">Coordinator splits &amp; routes slices.</p></div>
-        <div class="howx-conn" aria-hidden="true"></div>
-        <div class="howx-step" role="group" aria-label="Validate"><div class="howx-num">3</div><p class="howx-title">Validate</p><p class="howx-sub">Phones run; slices cross-check.</p></div>
-        <div class="howx-conn" aria-hidden="true"></div>
-        <div class="howx-step" role="group" aria-label="Merge"><div class="howx-num">4</div><p class="howx-title">Merge</p><p class="howx-sub">Coordinator assembles result + receipt.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-<section id="metrics" class="section">
-  <div class="container">
-    <h2 class="grad">Metrics To Highlight</h2>
-    <div class="rule"></div>
-    <style>
-      #metrics .ptile{text-align:center;padding:18px 14px;border:1px solid rgba(255,255,255,.10);border-radius:16px;background:rgba(255,255,255,.02)}
-      #metrics .ptile .num{font-weight:800;line-height:1;letter-spacing:-.02em;font-size:clamp(40px,10vw,72px);background:linear-gradient(120deg,#ff7a18,#ffb800,#ff3d81);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
-      #metrics .ptile .lbl{color:#cfd6e6;font-size:14px}
-    </style>
-    <div class="grid4">
-      <div class="ptile"><div class="num counter" data-count="98">0</div><div class="lbl">lower cost vs GPU baselines*</div></div>
-      <div class="ptile"><div class="num counter" data-count="60">0</div><div class="lbl">faster first-token at the edge</div></div>
-      <div class="ptile"><div class="num counter" data-count="15">0</div><div class="lbl">redundant validations per job</div></div>
-      <div class="ptile"><div class="num counter" data-count="100">0</div><div class="lbl">jobs ship signed receipts</div></div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-<section id="pricing" class="section">
-  <div class="container">
-    <h2 class="grad">Pricing</h2>
-    <div class="rule"></div>
-    <div class="card pricing">
-      <div class="controls">
-        <div>
-          <label for="tokens">Monthly tokens (1–200M)</label><br>
-          <input id="tokens" class="range" type="range" min="1" max="200" value="20">
-          <output id="tokensOut" class="subtle"></output>
-        </div>
-      </div>
-      <div class="centerStat card" style="padding:28px">
-        <div class="num grad" id="savingsPctBig">up to 0%</div>
-        <div class="lbl">Savings vs average of AWS &amp; GCP</div>
-      </div>
-      <div class="totals">
-        <div class="box" id="slyBox"><div class="num" id="slyTotal">$0.00</div><div class="lbl">SlyOS total</div></div>
-        <div class="box"><div class="num" id="awsTotal">$0.00</div><div class="lbl">AWS total</div></div>
-        <div class="box"><div class="num" id="gcpTotal">$0.00</div><div class="lbl">GCP total</div></div>
-      </div>
-      <div class="saveBar"><div class="fill"></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="mine" class="section">
-  <div class="container">
-    <h2 class="grad">Mine SLY</h2>
-    <div class="rule"></div>
-    <div class="mgrid">
-      <div class="mcard"><h3 class="grad"><span>Earn credits</span></h3><p>Validated workloads turn into SLY usage credits that offset your future jobs.</p></div>
-      <div class="mcard"><h3 class="grad"><span>Green impact</span></h3><p>Tap idle phones instead of spinning new servers. Less stranded capacity.</p></div>
-      <div class="mcard"><h3 class="grad"><span>Transparent by design</span></h3><p>Per-task receipts: job type, duration, replication %, anomalies, timings.</p></div>
-      <div class="mcard"><h3 class="grad"><span>Idle-first, capped</span></h3><p>Opportunistic background tasks with device caps to avoid interference.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="who" class="section">
-  <div class="container">
-    <h2 class="grad">Who It’s For</h2>
-    <div class="rule"></div>
-    <div class="wgrid">
-      <div class="wtile"><h3 class="grad">Startups</h3><p>Spin up evals and inference without chasing GPUs.</p></div>
-      <div class="wtile"><h3 class="grad">Enterprises</h3><p>Private pools + receipts for auditability and policy control.</p></div>
-      <div class="wtile"><h3 class="grad">Researchers</h3><p>Cheap bursts for experiments and benchmarks.</p></div>
-      <div class="wtile"><h3 class="grad">Developers</h3><p>Edge-aware inference &amp; eval pipelines.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="compare" class="section">
-  <div class="container">
-    <h2 class="grad">How We Compare</h2>
-    <div class="rule"></div>
-    <div class="tablecmp">
-      <table>
-        <thead>
-          <tr><th></th><th>Traditional Clouds</th><th>Generic “Distributed”</th><th class="grad">SlyOS</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Validation built-in</td><td>✕</td><td>~</td><td>✔</td></tr>
-          <tr><td>Edge-fast first token</td><td>~</td><td>✕</td><td>✔</td></tr>
-          <tr><td>Transparent receipts</td><td>✕</td><td>✕</td><td>✔</td></tr>
-          <tr><td>Planet-scale elasticity</td><td>GPU-limited</td><td>Slow</td><td>✔</td></tr>
-          <tr><td>Cost</td><td><span class="badge">High</span></td><td><span class="badge">Unclear</span></td><td><span class="badge">Up to 98% lower*</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="subtle">*Illustrative savings shown in Pricing.</p>
-  </div>
-</section>
-
-<section id="faqs" class="section">
-  <div class="container">
-    <h2 class="grad">FAQs</h2>
-    <div class="rule"></div>
-    <div class="faq">
-      <details><summary>Is this crypto?</summary><p>No. SLY are platform usage credits—no coins.</p></details>
-      <details><summary>What workloads?</summary><p>Embeddings, lightweight inference, bursty evals first; expanding via device-class routing.</p></details>
-      <details><summary>How do I trust results?</summary><p>Receipts include replication %, consensus details, anomalies, and timings.</p></details>
-      <details><summary>Can I restrict where jobs run?</summary><p>Yes—private pools or vetted contributor pools with policy controls.</p></details>
-      <details><summary>What about SLAs?</summary><p>We measure validated completion time, not just raw device speed.</p></details>
-    </div>
-  </div>
-</section>
-
-<section id="waitlist" class="section">
-  <div class="container">
-    <h2 class="grad">Join the waitlist</h2>
-    <div class="rule"></div>
-    <style>
-      #waitlist .wl-card{max-width:560px;margin:0 auto}
-      #waitlist .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:6px}
-      #waitlist .seg input{position:absolute;opacity:0;pointer-events:none}
-      #waitlist .seg label{display:grid;place-items:center;padding:10px;border-radius:10px;cursor:pointer;border:1px solid transparent;color:#cfd6e6;font-weight:600}
-      #waitlist .seg input:checked + label{background:linear-gradient(120deg,#ff7a18,#ffb800,#ff3d81);-webkit-background-clip:text;background-clip:text;color:transparent;border-color:rgba(255,184,0,.4)}
-      #waitlist .row{display:grid;grid-template-columns:1fr;gap:10px}
-      #waitlist input[type="email"],#waitlist input[type="text"],#waitlist select{width:100%;min-height:46px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#e7eaf5}
-      #waitlist .fine{color:#9fa8bf;font-size:12px;margin-top:8px}
-    </style>
-    <div class="wl-card centerStat card" style="padding:22px">
-      <p style="margin-bottom:14px">Onboarding in phases. Add your email for early access.</p>
-      <form id="waitlistForm" class="form" novalidate aria-describedby="status">
-        <div class="row">
-          <label class="sr-only" for="email">Email</label>
-          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required aria-label="Email">
-          <fieldset style="border:0;padding:0;margin:0">
-            <legend class="sr-only">I’m joining as</legend>
-            <div class="seg" role="radiogroup" aria-label="I’m joining as">
-              <input type="radio" id="aud-company" name="audience" value="company" checked><label for="aud-company">Company</label>
-              <input type="radio" id="aud-app" name="audience" value="app"><label for="aud-app">Individual</label>
-            </div>
-          </fieldset>
-          <div id="orgRow">
-            <label class="sr-only" for="org">Company</label>
-            <input id="org" name="org" type="text" placeholder="Company (optional)">
-          </div>
-        </div>
-        <div class="cta" style="margin-top:8px">
-          <button class="btn primary prominent" type="submit" style="min-height:48px;border-radius:999px">Join waitlist</button>
-        </div>
-        <div id="status" class="status fine" role="status" aria-live="polite"></div>
-        <p class="fine">We store your email, audience type, and (if provided) company to manage access invites.</p>
-      </form>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-  <footer class="section">
-    <div class="container" style="text-align:center">
-      <p style="margin-bottom:8px">© <span id="year"></span> SlyOS — Decentralized AI. Verified. Cheaper. · <a class="uline" href="privacy.html">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="app.js"></script>
 </body>
 </html>
-<!-- MARKER: hi from public -->
