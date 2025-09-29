@@ -3,11 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>SlyOS — Decentralized AI. Verified. Cheaper.</title>
+  
+  <!-- Primary Meta Tags -->
+  <title>SlyOS — Decentralized AI Computing on Idle Smartphones | 70% Lower Cost</title>
+  <meta name="title" content="SlyOS — Decentralized AI Computing on Idle Smartphones | 70% Lower Cost">
+  <meta name="description" content="Transform idle smartphones into a verified AI compute grid. SlyOS delivers proof-verified outputs, edge-first latency, and up to 70% lower costs than traditional cloud providers. Join the decentralized AI revolution.">
+  <meta name="keywords" content="decentralized AI, edge computing, smartphone computing, distributed inference, AI cost reduction, proof verification, edge AI, mobile computing grid, blockchain AI, verified AI outputs">
+  <meta name="author" content="SlyOS">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://slyos.ai/">
+  <meta property="og:title" content="SlyOS — Decentralized AI Computing on Idle Smartphones">
+  <meta property="og:description" content="Transform idle smartphones into a verified AI compute grid. Up to 70% lower costs, proof-verified outputs, and edge-first latency.">
+  <meta property="og:image" content="https://slyos.ai/assets/og-image.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://slyos.ai/">
+  <meta property="twitter:title" content="SlyOS — Decentralized AI Computing on Idle Smartphones">
+  <meta property="twitter:description" content="Transform idle smartphones into a verified AI compute grid. Up to 70% lower costs, proof-verified outputs, and edge-first latency.">
+  <meta property="twitter:image" content="https://slyos.ai/assets/twitter-image.png">
+  
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="assets/flame.png">
   <link rel="shortcut icon" type="image/png" href="assets/flame.png">
   <link rel="apple-touch-icon" href="assets/flame.png">
-  <meta name="description" content="SlyOS turns idle smartphones into a verified AI compute grid. Edge-fast, validated, cheaper.">
+  
+  <!-- Additional Meta -->
+  <meta name="theme-color" content="#ff7a18">
+  <link rel="canonical" href="https://slyos.ai/">
   
   <style>
     /* === RESET & BASE === */
@@ -189,10 +216,15 @@
       padding: 10px 12px;
       z-index: 1001;
       position: relative;
+      cursor: pointer;
     }
     
     .navx-toggle:hover {
       background: rgba(255,255,255,0.08);
+    }
+    
+    .navx-toggle:active {
+      transform: scale(0.95);
     }
     
     .navx-bars {
@@ -278,10 +310,15 @@
       display: grid;
       place-items: center;
       transition: all 0.2s;
+      cursor: pointer;
     }
     
     .navx-close:hover {
       background: rgba(255,255,255,0.1);
+    }
+    
+    .navx-close:active {
+      transform: scale(0.95);
     }
     
     .navx-mobile {
@@ -686,7 +723,7 @@
     }
     
     @media (prefers-reduced-motion: reduce) {
-      .howx-conn::before {
+      .howx-conn::before, .promoX-pulse {
         animation: none;
         transform: translateX(0);
       }
@@ -773,14 +810,6 @@
       box-shadow: 0 2px 8px rgba(255,122,24,0.4);
     }
     
-    .range::-webkit-slider-thumb:hover {
-      transform: scale(1.1);
-    }
-    
-    .range::-moz-range-thumb:hover {
-      transform: scale(1.1);
-    }
-    
     output {
       display: block;
       margin-top: 8px;
@@ -862,12 +891,6 @@
       box-shadow: 0 0 20px rgba(255,184,0,0.4) inset;
     }
     
-    @media (max-width: 600px) {
-      .totals {
-        grid-template-columns: 1fr;
-      }
-    }
-    
     /* === MINE === */
     .mgrid {
       display: grid;
@@ -895,7 +918,7 @@
     /* === WHO === */
     .wgrid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: clamp(16px, 2.5vw, 24px);
     }
     
@@ -911,9 +934,25 @@
       font-size: clamp(1.15rem, 2vw, 1.35rem);
     }
     
-    .wtile p {
+    .wtile h4 {
+      color: #ffb800;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 1em 0 0.5em;
+    }
+    
+    .wtile p, .wtile ul {
       color: #c8cfdd;
       line-height: 1.6;
+      margin-bottom: 0.75em;
+    }
+    
+    .wtile ul {
+      padding-left: 1.25em;
+    }
+    
+    .wtile li {
+      margin-bottom: 0.35em;
     }
     
     /* === COMPARE === */
@@ -956,11 +995,14 @@
       th, td {
         padding: 8px 6px;
       }
+      .totals, .grid4 {
+        grid-template-columns: 1fr;
+      }
     }
     
     /* === FAQ === */
     .faq {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
     
@@ -970,6 +1012,7 @@
       padding: 16px;
       margin-bottom: 12px;
       background: rgba(255,255,255,0.02);
+      cursor: pointer;
     }
     
     summary {
@@ -979,12 +1022,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 1.05rem;
     }
     
     summary::after {
       content: '+';
       font-size: 1.5rem;
       transition: transform 0.2s;
+      color: #ffb800;
     }
     
     details[open] summary::after {
@@ -1125,14 +1170,6 @@
       .promoX-title {
         font-size: 1.35rem;
       }
-      
-      .grid4 {
-        grid-template-columns: 1fr;
-      }
-      
-      .totals {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
@@ -1248,7 +1285,7 @@
           <div class="promoX-meter">
             <div class="promoX-meter-head">
               <span class="promoX-meter-left" id="promoX-left">100</span>
-              <span class="promoX-meter-label">credits bundles left</span>
+              <span class="promoX-meter-label">credit bundles left</span>
             </div>
             <div class="promoX-bar" aria-label="Bundles remaining" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
               <i class="promoX-fill"></i>
@@ -1307,7 +1344,7 @@
       <div class="rule"></div>
       <div class="grid4">
         <div class="ptile">
-          <div class="num counter" data-count="98">98%</div>
+          <div class="num counter" data-count="98">70%</div>
           <div class="lbl">lower cost vs GPU baselines*</div>
         </div>
         <div class="ptile">
@@ -1341,7 +1378,7 @@
         </div>
         
         <div class="centerStat card" style="padding: clamp(20px, 4vw, 28px); margin: 1.5rem 0;">
-          <div class="num grad" id="savingsPctBig">up to 70%</div>
+          <div class="num grad" id="savingsPctBig">up to 69%</div>
           <div class="lbl">Savings vs average of AWS & GCP</div>
         </div>
         
@@ -1361,7 +1398,7 @@
         </div>
         
         <div class="saveBar">
-          <div class="fill" style="width: 70%;"></div>
+          <div class="fill" style="width: 69%;"></div>
         </div>
       </div>
     </div>
@@ -1400,20 +1437,48 @@
       <div class="rule"></div>
       <div class="wgrid">
         <div class="wtile">
-          <h3 class="grad">Startups</h3>
-          <p>Spin up evals and inference without chasing GPUs.</p>
+          <h3 class="grad">AI Startups</h3>
+          <p>Build and scale AI products without the infrastructure burden.</p>
+          <h4>Perfect for:</h4>
+          <ul>
+            <li>Running continuous model evaluations</li>
+            <li>Prototype inference without GPU waitlists</li>
+            <li>Cost-effective A/B testing at scale</li>
+            <li>Flexible burst capacity for demos</li>
+          </ul>
         </div>
         <div class="wtile">
           <h3 class="grad">Enterprises</h3>
-          <p>Private pools + receipts for auditability and policy control.</p>
+          <p>Deploy AI with compliance, auditability, and control.</p>
+          <h4>Key benefits:</h4>
+          <ul>
+            <li>Private compute pools for sensitive workloads</li>
+            <li>Cryptographic receipts for audit trails</li>
+            <li>Policy-based device selection</li>
+            <li>Geographic routing options</li>
+          </ul>
         </div>
         <div class="wtile">
-          <h3 class="grad">Researchers</h3>
-          <p>Cheap bursts for experiments and benchmarks.</p>
+          <h3 class="grad">ML Researchers</h3>
+          <p>Accelerate experimentation with elastic compute.</p>
+          <h4>Research advantages:</h4>
+          <ul>
+            <li>Run hundreds of experiments in parallel</li>
+            <li>Affordable hyperparameter sweeps</li>
+            <li>Quick iteration cycles</li>
+            <li>No infrastructure management</li>
+          </ul>
         </div>
         <div class="wtile">
-          <h3 class="grad">Developers</h3>
-          <p>Edge-aware inference & eval pipelines.</p>
+          <h3 class="grad">App Developers</h3>
+          <p>Integrate AI features with edge-optimized performance.</p>
+          <h4>Developer tools:</h4>
+          <ul>
+            <li>Simple REST API integration</li>
+            <li>Edge-aware routing for low latency</li>
+            <li>Pay-per-use pricing model</li>
+            <li>Built-in monitoring and analytics</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1429,46 +1494,52 @@
           <thead>
             <tr>
               <th></th>
-              <th>Traditional Clouds</th>
-              <th>Generic "Distributed"</th>
+              <th>Acurast</th>
+              <th>Enurochain</th>
               <th class="grad">SlyOS</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Validation built-in</td>
-              <td>✕</td>
-              <td>~</td>
-              <td>✔</td>
-            </tr>
-            <tr>
-              <td>Edge-fast first token</td>
+              <td>Built-in validation</td>
               <td>~</td>
               <td>✕</td>
               <td>✔</td>
             </tr>
             <tr>
-              <td>Transparent receipts</td>
+              <td>AI-optimized inference</td>
+              <td>✕</td>
+              <td>~</td>
+              <td>✔</td>
+            </tr>
+            <tr>
+              <td>Edge-first latency</td>
+              <td>~</td>
+              <td>✕</td>
+              <td>✔</td>
+            </tr>
+            <tr>
+              <td>Cryptographic receipts</td>
               <td>✕</td>
               <td>✕</td>
               <td>✔</td>
             </tr>
             <tr>
-              <td>Planet-scale elasticity</td>
-              <td>GPU-limited</td>
-              <td>Slow</td>
+              <td>Private compute pools</td>
+              <td>✕</td>
+              <td>✕</td>
               <td>✔</td>
             </tr>
             <tr>
-              <td>Cost</td>
-              <td><span class="badge">High</span></td>
-              <td><span class="badge">Unclear</span></td>
-              <td><span class="badge">Up to 98% lower*</span></td>
+              <td>Cost structure</td>
+              <td><span class="badge">Variable</span></td>
+              <td><span class="badge">Token-based</span></td>
+              <td><span class="badge">Up to 70% lower*</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="subtle">*Illustrative savings shown in Pricing.</p>
+      <p class="subtle">*Illustrative savings shown in Pricing section compared to traditional cloud providers.</p>
     </div>
   </section>
 
@@ -1479,24 +1550,44 @@
       <div class="rule"></div>
       <div class="faq">
         <details>
-          <summary>Is this crypto?</summary>
-          <p>No. SLY are platform usage credits—no coins.</p>
+          <summary>Is this crypto or blockchain-based?</summary>
+          <p>No. SLY are platform usage credits—not cryptocurrency or tokens. There's no blockchain, no mining rewards, and no speculative trading. Think of SLY credits like AWS credits: they're simply accounting units for compute time on our platform.</p>
         </details>
         <details>
-          <summary>What workloads?</summary>
-          <p>Embeddings, lightweight inference, bursty evals first; expanding via device-class routing.</p>
+          <summary>What types of AI workloads can I run?</summary>
+          <p>Currently optimized for embeddings, lightweight inference (up to 7B parameter models), and bursty evaluation tasks. We're expanding to support larger models through device-class routing, where higher-spec smartphones handle more demanding workloads. RAG pipelines, semantic search, and classification tasks work particularly well.</p>
         </details>
         <details>
-          <summary>How do I trust results?</summary>
-          <p>Receipts include replication %, consensus details, anomalies, and timings.</p>
+          <summary>How do I trust the results from random smartphones?</summary>
+          <p>Every job gets cryptographic receipts that include: redundancy percentage (typically 15x validation), consensus details showing which devices agreed, anomaly detection results, and precise timing data. You can verify that multiple independent devices produced identical outputs, making tampering mathematically impractical.</p>
         </details>
         <details>
-          <summary>Can I restrict where jobs run?</summary>
-          <p>Yes—private pools or vetted contributor pools with policy controls.</p>
+          <summary>Can I restrict where my jobs run?</summary>
+          <p>Absolutely. You can create private pools with your own devices, use vetted contributor pools with KYC'd participants, set geographic restrictions (e.g., "EU devices only"), require minimum device specifications, or combine these policies. Enterprise customers get granular control over device selection.</p>
         </details>
         <details>
-          <summary>What about SLAs?</summary>
-          <p>We measure validated completion time, not just raw device speed.</p>
+          <summary>What about SLAs and reliability?</summary>
+          <p>We measure validated completion time, not just raw device speed. Our SLA guarantees are based on successfully validated outputs. If redundancy fails or consensus isn't reached, you don't pay. Typical jobs complete within 2-5 seconds for inference, with sub-second p95 latency for edge-local requests.</p>
+        </details>
+        <details>
+          <summary>How does pricing compare to AWS/GCP/Azure?</summary>
+          <p>For supported workloads, you'll typically see 60-70% cost reduction compared to cloud GPU instances. The calculator above shows real-time comparisons. Pricing is transparent: you pay per million tokens processed, with volume discounts automatically applied. No hidden fees, no egress charges.</p>
+        </details>
+        <details>
+          <summary>What happens to my data privacy?</summary>
+          <p>Jobs can be end-to-end encrypted. Input data is sharded before distribution—no single device sees your complete dataset. Models run in secure enclaves where available. For maximum privacy, use private pools where you control all devices. We never log or store your inference inputs or outputs.</p>
+        </details>
+        <details>
+          <summary>How do contributors earn SLY credits?</summary>
+          <p>Device owners earn credits proportional to validated compute time. Earnings depend on device specs, uptime, and validation success rate. High-performing contributors get priority routing. You can cash out credits or use them to offset your own inference costs.</p>
+        </details>
+        <details>
+          <summary>What's the onboarding process?</summary>
+          <p>Join our waitlist above. We're onboarding in phases: first companies with immediate inference needs, then individual developers, and finally contributor device owners. Beta participants get 1,000 free SLY credits. Typical onboarding takes 2-3 days including API key setup and initial testing.</p>
+        </details>
+        <details>
+          <summary>Which models and frameworks do you support?</summary>
+          <p>We support ONNX, TensorFlow Lite, and PyTorch Mobile formats. Popular models include Sentence Transformers (embeddings), DistilBERT, MobileBERT, BERT-small, and quantized versions of Llama, Mistral, and Phi. If you have a specific model, reach out—we're rapidly expanding compatibility.</p>
         </details>
       </div>
     </div>
@@ -1552,13 +1643,17 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Navigation
+    // Navigation - Fixed for mobile
     (function() {
       const nav = document.querySelector('.nav');
+      if (!nav) return;
+      
       const btn = nav.querySelector('.navx-toggle');
       const panel = nav.querySelector('#navx-panel');
       const scrim = nav.querySelector('.navx-scrim');
       const close = nav.querySelector('.navx-close');
+      
+      if (!btn || !panel || !scrim || !close) return;
       
       function open() {
         nav.dataset.open = 'true';
@@ -1578,14 +1673,37 @@
         }, 300);
       }
       
-      btn.addEventListener('click', () => nav.dataset.open === 'true' ? closeMenu() : open());
-      close.addEventListener('click', closeMenu);
-      scrim.addEventListener('click', closeMenu);
-      panel.addEventListener('click', e => {
-        if (e.target.matches('a')) closeMenu();
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (nav.dataset.open === 'true') {
+          closeMenu();
+        } else {
+          open();
+        }
       });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeMenu();
+      
+      close.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMenu();
+      });
+      
+      scrim.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMenu();
+      });
+      
+      panel.addEventListener('click', (e) => {
+        if (e.target.matches('a')) {
+          closeMenu();
+        }
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.dataset.open === 'true') {
+          closeMenu();
+        }
       });
     })();
     
@@ -1601,10 +1719,11 @@
       const bar = sec.querySelector('.promoX-bar');
       const fill = sec.querySelector('.promoX-fill');
       
-      leftEl.textContent = String(left);
-      bar.setAttribute('aria-valuenow', String(left));
+      if (leftEl) leftEl.textContent = String(left);
+      if (bar) bar.setAttribute('aria-valuenow', String(left));
+      
       const pct = left / total;
-      fill.style.transform = `translateX(${-(1 - pct) * 100}%)`;
+      if (fill) fill.style.transform = `translateX(${-(1 - pct) * 100}%)`;
       
       const go = (aud) => {
         const form = document.getElementById('waitlistForm');
@@ -1628,7 +1747,7 @@
       });
     })();
     
-    // Pricing calculator
+    // Pricing calculator - FIXED
     (function() {
       const tokensInput = document.getElementById('tokens');
       const tokensOut = document.getElementById('tokensOut');
@@ -1638,10 +1757,13 @@
       const savingsPct = document.getElementById('savingsPctBig');
       const saveBar = document.querySelector('.saveBar .fill');
       
+      if (!tokensInput || !tokensOut || !slyTotal || !awsTotal || !gcpTotal || !savingsPct || !saveBar) return;
+      
       function calc() {
         const tokens = +tokensInput.value;
         tokensOut.textContent = `${tokens}M tokens/month`;
         
+        // Pricing: SlyOS = $20/M tokens, AWS = $60/M, GCP = $70/M
         const sly = tokens * 20;
         const aws = tokens * 60;
         const gcp = tokens * 70;
@@ -1651,4 +1773,56 @@
         slyTotal.textContent = `${sly.toLocaleString()}`;
         awsTotal.textContent = `${aws.toLocaleString()}`;
         gcpTotal.textContent = `${gcp.toLocaleString()}`;
-        savingsPct.textContent = `
+        savingsPct.textContent = `up to ${savings}%`;
+        saveBar.style.width = `${savings}%`;
+      }
+      
+      tokensInput.addEventListener('input', calc);
+      calc();
+    })();
+    
+    // Waitlist form
+    (function() {
+      const form = document.getElementById('waitlistForm');
+      if (!form) return;
+      
+      const status = document.getElementById('status');
+      const orgRow = document.getElementById('orgRow');
+      const audInputs = form.querySelectorAll('input[name="audience"]');
+      
+      audInputs.forEach(input => {
+        input.addEventListener('change', () => {
+          if (orgRow) {
+            orgRow.style.display = input.value === 'company' ? '' : 'none';
+          }
+        });
+      });
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = form.email.value.trim();
+        
+        if (!email || !email.includes('@')) {
+          if (status) {
+            status.textContent = 'Please enter a valid email.';
+            status.className = 'status fine error show';
+          }
+          return;
+        }
+        
+        if (status) {
+          status.textContent = 'Thanks! You're on the list.';
+          status.className = 'status fine success show';
+        }
+        form.reset();
+        
+        setTimeout(() => {
+          if (status) {
+            status.className = 'status fine';
+          }
+        }, 5000);
+      });
+    })();
+  </script>
+</body>
+</html>
