@@ -217,6 +217,8 @@
       z-index: 1001;
       position: relative;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     
     .navx-toggle:hover {
@@ -311,6 +313,8 @@
       place-items: center;
       transition: all 0.2s;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     
     .navx-close:hover {
@@ -766,56 +770,6 @@
       margin: 0 auto;
     }
     
-    .controls {
-      margin-bottom: 1.5rem;
-    }
-    
-    .controls label {
-      display: block;
-      margin-bottom: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-    
-    .range {
-      width: 100%;
-      height: 8px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 999px;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-      margin: 12px 0;
-      cursor: pointer;
-    }
-    
-    .range::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(120deg, #ff7a18, #ffb800);
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(255,122,24,0.4);
-    }
-    
-    .range::-moz-range-thumb {
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(120deg, #ff7a18, #ffb800);
-      border-radius: 999px;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 2px 8px rgba(255,122,24,0.4);
-    }
-    
-    output {
-      display: block;
-      margin-top: 8px;
-      font-size: 0.95rem;
-    }
-    
     .centerStat {
       text-align: center;
     }
@@ -886,7 +840,7 @@
     .saveBar .fill {
       height: 100%;
       background: linear-gradient(90deg, #ff7a18, #ffb800, #ff3d81);
-      width: 0%;
+      width: 69%;
       transition: width 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
       box-shadow: 0 0 20px rgba(255,184,0,0.4) inset;
     }
@@ -903,7 +857,7 @@
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px;
       background: rgba(255,255,255,0.02);
-    }
+}
     
     .mcard h3 {
       margin-bottom: 0.75em;
@@ -918,7 +872,7 @@
     /* === WHO === */
     .wgrid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: clamp(16px, 2.5vw, 24px);
     }
     
@@ -953,6 +907,12 @@
     
     .wtile li {
       margin-bottom: 0.35em;
+    }
+    
+    @media (max-width: 768px) {
+      .wgrid {
+        grid-template-columns: 1fr;
+      }
     }
     
     /* === COMPARE === */
@@ -1137,91 +1097,7 @@
       color: #ff6b6b;
     }
     
-    /* === FOOTER === */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 40px 0;
-      text-align: center;
-    }
-    
-    footer p {
-      color: #9fa8bf;
-      font-size: 0.9rem;
-    }
-    
-    footer a:hover {
-      color: #ffb800;
-    }
-    
-    /* === RESPONSIVE OVERRIDES === */
-    @media (max-width: 480px) {
-      .hero__title {
-        font-size: 1.75rem;
-      }
-      
-      .btn {
-        padding: 10px 16px;
-      }
-      
-      .btn.prominent {
-        padding: 12px 20px;
-      }
-      
-      .promoX-title {
-        font-size: 1.35rem;
-      }
-    }
-  </style>
-</head>
-
-
-<!-- POPUP MODAL -->
-  <div id="welcomeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-    <div class="modal-backdrop"></div>
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close popup" type="button">
-        <span aria-hidden="true">×</span>
-      </button>
-      
-      <div class="modal-body">
-        <div class="modal-icon">
-          <img src="assets/flame.png" alt="SlyOS">
-        </div>
-        
-        <h2 id="modalTitle" class="grad" style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 0.5em;">
-          Join the Future of Serverless AI
-        </h2>
-        
-        <p style="color: #c8cfdd; margin-bottom: 1.5em; line-height: 1.6;">
-          Help startups overcome cloud cost barriers. Be among the first 100 to access our verified, 
-          edge-first AI compute grid—and get <strong style="color: #ffb800;">1,000 free SLY credits</strong>.
-        </p>
-        
-        <form id="modalForm" class="modal-form" novalidate>
-          <input 
-            type="email" 
-            name="modalEmail" 
-            id="modalEmail"
-            placeholder="you@company.com" 
-            required 
-            style="width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: #e7eaf5; font-size: 1rem; margin-bottom: 12px;"
-          >
-          
-          <button type="submit" class="btn primary prominent" style="width: 100%; min-height: 52px;">
-            Claim Your Spot
-          </button>
-          
-          <div id="modalStatus" class="status fine" role="status" aria-live="polite"></div>
-        </form>
-        
-        <p class="fine" style="margin-top: 12px; text-align: center;">
-          No card required. Instant access to private beta.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <style>
+    /* === MODAL === */
     .modal {
       position: fixed;
       inset: 0;
@@ -1277,6 +1153,8 @@
       line-height: 1;
       cursor: pointer;
       transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     
     .modal-close:hover {
@@ -1316,76 +1194,110 @@
         padding: 24px 20px;
       }
     }
+    
+    /* === FOOTER === */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0;
+      text-align: center;
+    }
+    
+    footer p {
+      color: #9fa8bf;
+      font-size: 0.9rem;
+    }
+    
+    footer a:hover {
+      color: #ffb800;
+    }
+    
+    /* === RESPONSIVE OVERRIDES === */
+    @media (max-width: 480px) {
+      .hero__title {
+        font-size: 1.75rem;
+      }
+      
+      .btn {
+        padding: 10px 16px;
+      }
+      
+      .btn.prominent {
+        padding: 12px 20px;
+      }
+      
+      .promoX-title {
+        font-size: 1.35rem;
+      }
+    }
   </style>
+</head>
 
-  <script>
-    // Welcome Modal
-    (function() {
-      const modal = document.getElementById('welcomeModal');
-      const modalClose = modal?.querySelector('.modal-close');
-      const modalBackdrop = modal?.querySelector('.modal-backdrop');
-      const modalForm = document.getElementById('modalForm');
-      const modalStatus = document.getElementById('modalStatus');
-      
-      if (!modal) return;
-      
-      // Check if user has already seen the modal
-      const hasSeenModal = sessionStorage.getItem('slyos_modal_seen');
-      
-      // Show modal after 2 seconds if not seen
-      if (!hasSeenModal) {
-        setTimeout(() => {
-          modal.hidden = false;
-          document.body.style.overflow = 'hidden';
-        }, 2000);
-      }
-      
-      function closeModal() {
-        modal.hidden = true;
-        document.body.style.overflow = '';
-        sessionStorage.setItem('slyos_modal_seen', 'true');
-      }
-      
-      modalClose?.addEventListener('click', closeModal);
-      modalBackdrop?.addEventListener('click', closeModal);
-      
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.hidden) {
-          closeModal();
-        }
-      });
-      
-      // Handle form submission
-      modalForm?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = modalForm.modalEmail.value.trim();
-        
-        if (!email || !email.includes('@')) {
-          if (modalStatus) {
-            modalStatus.textContent = 'Please enter a valid email.';
-            modalStatus.className = 'status fine error show';
-          }
-          return;
-        }
-        
-        if (modalStatus) {
-          modalStatus.textContent = '🎉 You're on the list! Check your email.';
-          modalStatus.className = 'status fine success show';
-        }
-        
-        modalForm.reset();
-        
-        setTimeout(() => {
-          closeModal();
-        }, 2000);
-      });
-    })();
-  </script>
-
-
-
-  
 <body>
+  <!-- POPUP MODAL -->
+  <div id="welcomeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close popup" type="button">
+        <span aria-hidden="true">×</span>
+      </button>
+      
+      <div class="modal-body">
+        <div class="modal-icon">
+          <img src="assets/flame.png" alt="SlyOS">
+        </div>
+        
+        <h2 id="modalTitle" class="grad" style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 0.5em;">
+          Join the Waitlist Now
+        </h2>
+        
+        <p style="color: #c8cfdd; margin-bottom: 1.5em; line-height: 1.6;">
+          Be among the first 100 to access our verified, edge-first AI compute grid—and get <strong style="color: #ffb800;">1,000 free SLY credits</strong>.
+        </p>
+        
+        <form id="modalForm" class="modal-form" novalidate>
+          <input 
+            type="email" 
+            name="modalEmail" 
+            id="modalEmail"
+            placeholder="you@company.com" 
+            required 
+            style="width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: #e7eaf5; font-size: 1rem; margin-bottom: 12px;"
+          >
+          
+          <fieldset style="border:0;padding:0;margin:0 0 12px 0">
+            <legend class="sr-only">I'm joining as</legend>
+            <div class="seg" role="radiogroup" aria-label="I'm joining as">
+              <input type="radio" id="modal-aud-company" name="modalAudience" value="company" checked>
+              <label for="modal-aud-company">Company</label>
+              <input type="radio" id="modal-aud-app" name="modalAudience" value="app">
+              <label for="modal-aud-app">Individual</label>
+            </div>
+          </fieldset>
+          
+          <div id="modalOrgRow">
+            <input 
+              type="text" 
+              name="modalOrg" 
+              id="modalOrg"
+              placeholder="Company (optional)" 
+              style="width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: #e7eaf5; font-size: 1rem; margin-bottom: 12px;"
+            >
+          </div>
+          
+          <button type="submit" class="btn primary prominent" style="width: 100%; min-height: 52px;">
+            Join Waitlist
+          </button>
+          
+          <div id="modalStatus" class="status fine" role="status" aria-live="polite"></div>
+        </form>
+        
+        <p class="fine" style="margin-top: 12px; text-align: center;">
+          No card required. Instant access to private beta.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav class="nav" aria-label="Primary">
     <div class="container inner">
@@ -1581,36 +1493,28 @@
       <h2 class="grad">Pricing</h2>
       <div class="rule"></div>
       <div class="card pricing">
-        <div class="controls">
-          <div>
-            <label for="tokens">Monthly tokens (1–200M)</label>
-            <input id="tokens" class="range" type="range" min="1" max="200" value="20" step="1">
-            <output id="tokensOut" class="subtle">20M tokens/month</output>
-          </div>
-        </div>
-        
         <div class="centerStat card" style="padding: clamp(20px, 4vw, 28px); margin: 1.5rem 0;">
-          <div class="num grad" id="savingsPctBig">up to 69%</div>
+          <div class="num grad">up to 69%</div>
           <div class="lbl">Savings vs average of AWS & GCP</div>
         </div>
         
         <div class="totals">
           <div class="box" id="slyBox">
-            <div class="num" id="slyTotal">$400</div>
-            <div class="lbl">SlyOS total</div>
+            <div class="num">$400</div>
+            <div class="lbl">SlyOS (20M tokens)</div>
           </div>
           <div class="box">
-            <div class="num" id="awsTotal">$1,200</div>
-            <div class="lbl">AWS total</div>
+            <div class="num">$1,200</div>
+            <div class="lbl">AWS (20M tokens)</div>
           </div>
           <div class="box">
-            <div class="num" id="gcpTotal">$1,400</div>
-            <div class="lbl">GCP total</div>
+            <div class="num">$1,400</div>
+            <div class="lbl">GCP (20M tokens)</div>
           </div>
         </div>
         
         <div class="saveBar">
-          <div class="fill" style="width: 69%;"></div>
+          <div class="fill"></div>
         </div>
       </div>
     </div>
@@ -1885,7 +1789,7 @@
         }, 300);
       }
       
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         if (nav.dataset.open === 'true') {
@@ -1895,27 +1799,115 @@
         }
       });
       
-      close.addEventListener('click', (e) => {
+      btn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (nav.dataset.open === 'true') {
+          closeMenu();
+        } else {
+          open();
+        }
+      }, { passive: false });
+      
+      close.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         closeMenu();
       });
       
-      scrim.addEventListener('click', (e) => {
+      close.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        closeMenu();
+      }, { passive: false });
+      
+      scrim.addEventListener('click', function(e) {
         e.preventDefault();
         closeMenu();
       });
       
-      panel.addEventListener('click', (e) => {
+      panel.addEventListener('click', function(e) {
         if (e.target.matches('a')) {
           closeMenu();
         }
       });
       
-      document.addEventListener('keydown', (e) => {
+      document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && nav.dataset.open === 'true') {
           closeMenu();
         }
+      });
+    })();
+    
+    // Welcome Modal
+    (function() {
+      const modal = document.getElementById('welcomeModal');
+      const modalClose = modal?.querySelector('.modal-close');
+      const modalBackdrop = modal?.querySelector('.modal-backdrop');
+      const modalForm = document.getElementById('modalForm');
+      const modalStatus = document.getElementById('modalStatus');
+      const modalOrgRow = document.getElementById('modalOrgRow');
+      const modalAudInputs = modalForm?.querySelectorAll('input[name="modalAudience"]');
+      
+      if (!modal) return;
+      
+      // Check if user has already seen the modal
+      const hasSeenModal = sessionStorage.getItem('slyos_modal_seen');
+      
+      // Show modal after 2 seconds if not seen
+      if (!hasSeenModal) {
+        setTimeout(function() {
+          modal.hidden = false;
+          document.body.style.overflow = 'hidden';
+        }, 2000);
+      }
+      
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        sessionStorage.setItem('slyos_modal_seen', 'true');
+      }
+      
+      modalClose?.addEventListener('click', closeModal);
+      modalBackdrop?.addEventListener('click', closeModal);
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.hidden) {
+          closeModal();
+        }
+      });
+      
+      // Handle audience change
+      modalAudInputs?.forEach(function(input) {
+        input.addEventListener('change', function() {
+          if (modalOrgRow) {
+            modalOrgRow.style.display = input.value === 'company' ? '' : 'none';
+          }
+        });
+      });
+      
+      // Handle form submission
+      modalForm?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = modalForm.modalEmail.value.trim();
+        
+        if (!email || !email.includes('@')) {
+          if (modalStatus) {
+            modalStatus.textContent = 'Please enter a valid email.';
+            modalStatus.className = 'status fine error show';
+          }
+          return;
+        }
+        
+        if (modalStatus) {
+          modalStatus.textContent = '🎉 You're on the list! Check your email.';
+          modalStatus.className = 'status fine success show';
+        }
+        
+        modalForm.reset();
+        
+        setTimeout(function() {
+          closeModal();
+        }, 2000);
       });
     })();
     
@@ -1935,9 +1927,9 @@
       if (bar) bar.setAttribute('aria-valuenow', String(left));
       
       const pct = left / total;
-      if (fill) fill.style.transform = `translateX(${-(1 - pct) * 100}%)`;
+      if (fill) fill.style.transform = 'translateX(' + (-(1 - pct) * 100) + '%)';
       
-      const go = (aud) => {
+      const go = function(aud) {
         const form = document.getElementById('waitlistForm');
         if (form) {
           const company = document.getElementById('aud-company');
@@ -1951,46 +1943,12 @@
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
       
-      sec.addEventListener('click', (e) => {
+      sec.addEventListener('click', function(e) {
         const a = e.target.closest('a[data-audience]');
         if (!a) return;
         e.preventDefault();
         go(a.getAttribute('data-audience'));
       });
-    })();
-    
-    // Pricing calculator - FIXED
-    (function() {
-      const tokensInput = document.getElementById('tokens');
-      const tokensOut = document.getElementById('tokensOut');
-      const slyTotal = document.getElementById('slyTotal');
-      const awsTotal = document.getElementById('awsTotal');
-      const gcpTotal = document.getElementById('gcpTotal');
-      const savingsPct = document.getElementById('savingsPctBig');
-      const saveBar = document.querySelector('.saveBar .fill');
-      
-      if (!tokensInput || !tokensOut || !slyTotal || !awsTotal || !gcpTotal || !savingsPct || !saveBar) return;
-      
-      function calc() {
-        const tokens = +tokensInput.value;
-        tokensOut.textContent = `${tokens}M tokens/month`;
-        
-        // Pricing: SlyOS = $20/M tokens, AWS = $60/M, GCP = $70/M
-        const sly = tokens * 20;
-        const aws = tokens * 60;
-        const gcp = tokens * 70;
-        const avg = (aws + gcp) / 2;
-        const savings = Math.round(((avg - sly) / avg) * 100);
-        
-        slyTotal.textContent = `${sly.toLocaleString()}`;
-        awsTotal.textContent = `${aws.toLocaleString()}`;
-        gcpTotal.textContent = `${gcp.toLocaleString()}`;
-        savingsPct.textContent = `up to ${savings}%`;
-        saveBar.style.width = `${savings}%`;
-      }
-      
-      tokensInput.addEventListener('input', calc);
-      calc();
     })();
     
     // Waitlist form
@@ -2002,15 +1960,15 @@
       const orgRow = document.getElementById('orgRow');
       const audInputs = form.querySelectorAll('input[name="audience"]');
       
-      audInputs.forEach(input => {
-        input.addEventListener('change', () => {
+      audInputs.forEach(function(input) {
+        input.addEventListener('change', function() {
           if (orgRow) {
             orgRow.style.display = input.value === 'company' ? '' : 'none';
           }
         });
       });
       
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
         const email = form.email.value.trim();
         
@@ -2028,7 +1986,7 @@
         }
         form.reset();
         
-        setTimeout(() => {
+        setTimeout(function() {
           if (status) {
             status.className = 'status fine';
           }
@@ -2038,3 +1996,5 @@
   </script>
 </body>
 </html>
+
+
